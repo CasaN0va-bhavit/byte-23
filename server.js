@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt")
 const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const methodOverride = require('method-override')
 const mongoose = require('mongoose');
 
@@ -59,6 +60,26 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true
 }));
+
+const YOUR_DOMAIN = 'http://localhost:4242';
+
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+        price: 'price_1NduKcSEAo4msgGAX33ZEZIy',
+        quantity: 1,
+      },
+    ],
+    mode: 'subscription',
+    success_url: `${YOUR_DOMAIN}/success.html`,
+    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+  });
+
+  res.redirect(303, session.url);
+});
+
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs')
