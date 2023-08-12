@@ -68,11 +68,11 @@ app.post('/create-checkout-session', async (req, res) => {
     line_items: [
       {
         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: 'price_1NduKcSEAo4msgGAX33ZEZIy',
+        price: 'price_1Ne8PTSEAo4msgGAv1bXyu31',
         quantity: 1,
       },
     ],
-    mode: 'subscription',
+    mode: 'payment',
     success_url: `${YOUR_DOMAIN}/success.html`,
     cancel_url: `${YOUR_DOMAIN}/cancel.html`,
   });
