@@ -40,6 +40,9 @@ app.set("view-engine", "ejs")
 app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
+    cookie: {
+        maxAge: 60000 * 60 * 24
+    },
     resave: false,
     saveUninitialized: false
 }));
@@ -61,20 +64,19 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     failureFlash: true
 }));
 
-const YOUR_DOMAIN = 'http://localhost:4242';
+const DOMAIN = 'http://localhost:4242';
 
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
-        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
         price: 'price_1Ne8PTSEAo4msgGAv1bXyu31',
         quantity: 1,
       },
     ],
     mode: 'payment',
-    success_url: `${YOUR_DOMAIN}/success.html`,
-    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+    success_url: `${DOMAIN}/success.html`,
+    cancel_url: `${DOMAIN}/cancel.html`,
   });
 
   res.redirect(303, session.url);
