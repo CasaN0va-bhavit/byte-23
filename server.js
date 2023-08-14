@@ -41,6 +41,7 @@ initializePassport(
 const app = express();
 app.use(express.urlencoded({ extended: false }))
 app.set("view-engine", "ejs")
+app.set('views', 'views')
 app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -53,6 +54,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
+app.use(express.static('public'))
 
 app.get('/', checkAuthenticated, (req, res) => {
    res.render('index.ejs', { name: req.user.name })
@@ -68,19 +70,27 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     failureFlash: true
 }));
 
-const DOMAIN = 'http://localhost:4242';
+app.get('/success', (req, res) => {
+    res.render('success.ejs')
+});
+
+app.get('/cancel', (req, res) => {
+    res.render('cancel.ejs')
+});
+
+const DOMAIN = 'http://localhost:3000';
 
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
-        price: 'price_1NedR9SEAo4msgGAJ98maUB6',
+        price: 'price_1Nee1sSEAo4msgGAF0PmErpK',
         quantity: 1,
       },
     ],
     mode: 'payment',
-    success_url: `${DOMAIN}/success.html`,
-    cancel_url: `${DOMAIN}/cancel.html`,
+    success_url: `${DOMAIN}/success`,
+    cancel_url: `${DOMAIN}/cancel`,
   });
 
   res.redirect(303, session.url);

@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    background: #111018;
+}
+
+.nav2 {
+    height: 90vh;
+    width: 19.495vw;
+    background: #141321;
+    display: flex;
+}
+
+.container {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.greeting {
+    color: #fff;
+}
+
+
+.content {
+    font-family: 'Raleway';
+    text-transform: uppercase;
+    font-size: 2.020vw;
+    margin-left: 10vw;
+    margin-top: 6vw;
+}

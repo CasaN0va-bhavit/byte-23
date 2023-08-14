@@ -5,51 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+        @font-face {
+            font-family: 'Integral';
+            src: url('../../fonts/IntegralCF-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
         body {
-            height: 100%;
-            margin: 0;
+            overflow-x: hidden;
         }
-        nav {
-            background-color: #17141d;
+        .nav{
+            width: 100vw;
+            height: 5.455vw;
+            flex-shrink: 0;
+            /* border-radius: 30px; */
+            background: #1B1832;
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+            font-family: 'Raleway';
         }
-        .menu {
-            width: 100% !important;
-        }
-        ul {
+        .items {
+            width: 100vw;
+            margin: 8vw;
             display: flex;
             flex-direction: row;
+            align-items: center;
             justify-content: space-between;
         }
-        li {
-            list-style-type: none;
+        .left {
+            font-size: 1.667vw;
         }
-        a {
-            text-decoration: none;
-            color: #fff;
+        .rectangle {
+            width: 13.698vw;
+            height: 3vw;
+            border-radius: 30px;
+            background: #111018;
+            margin-right: 5vw;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+        .right {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .circle {
+            width: 2vw;
+            height: 2vw;
+            flex-shrink: 0;
+            fill: #C01C57;
+        }
+        .creds {
+            display: flex;
+            flex-direction: row;
+            gap: 2vw;
+        }
+        .left h1 {
+            font-size: 32px;
+        }
+        .nav-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .nav-content h1 {
+            color: #6D55FF;
+            text-align: center;
+            font-family: 'Raleway', sans-serif;
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 900;
+            line-height: normal;
+            margin-left: 1vw;
+        }
+        .coins {
+            border-radius: 30px;
+            border: 8px solid #111018;
+            background: #1B1832;
+            width: 7vw;
+            height: 1.55vw;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+        .coins p {
+            margin-left: 1vw;
         }
     </style>
 </head>
 <body>
     <nav>
-        <div class="menu">
-            <ul class="ul">
-                <li class="item">
-                    <a href="#">Home</a>
-                </li>
-                <li class="item">
-                    <a href="#">About</a>
-                </li>
-                <li class="item">
-                    <a href="#">Gallery</a>
-                </li>
-                <li class="item">
-                    <a href="#">Rishit</a>
-                </li>
-            </ul>
+        <div class="nav">
+            <div class="items">
+                <div class="left">
+                    <h1>XYZ.COM</h1>
+                </div>
+                <div class="right">
+                    <div class="rectangle">
+                        <div class="nav-content">
+                            <h1>COINS</h1>
+                            <div class="coins">
+                                <p>XXXXX</p>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="creds">
+                        <p>Username</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 51 51" fill="none">
+                            <circle cx="25.5" cy="25.5" r="25.5" fill="#C01C57"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
+
+    
 </body>
 </html>
