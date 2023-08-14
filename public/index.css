@@ -1,10 +1,11 @@
 body {
     margin: 0;
     background: #111018;
+    height: auto;
 }
 
 .nav2 {
-    height: 90vh;
+    height: auto;
     width: 19.495vw;
     background: #141321;
     display: flex;
@@ -12,20 +13,136 @@ body {
 
 .container {
     width: 100vw;
-    height: auto;
+    height: 49vw;
     display: flex;
     flex-direction: row;
 }
 
 .greeting {
     color: #fff;
+    font-size: 2.5em;
+    font-family: 'Raleway';
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 
 .content {
-    font-family: 'Raleway';
-    text-transform: uppercase;
-    font-size: 2.020vw;
     margin-left: 10vw;
     margin-top: 6vw;
+    width: 60vw;
+}
+
+.spin-the-wheel {
+    width: 45%;
+    height: 12vw;
+    flex-shrink: 0;
+    border-radius: 30px;
+    background: radial-gradient(74.30% 63.46% at 88.81% 25.35%, #A042FE 10.94%, #4820EA 90.63%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* margin-left: 5vw; */
+    /* padding: 5vw; */
+}
+
+.spin-the-wheel img {
+    aspect-ratio: 1;
+    width: 10.758vw;
+    z-index: 10;
+    transform: scale(1.5);
+    padding-right: 40px;
+}
+
+
+.items-wheel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /* margin: 0 5vw; */
+}
+
+
+.items-wheel h1 {
+    color: #fff;
+    font-family: 'Raleway';
+    font-size: 2.020vw;
+    width: 30%;
+    padding-left: 10%;
+}
+
+
+.cards {
+    margin-top: 12vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3vw;
+}
+
+.quiz {
+    width: 45%;
+    height: 12vw;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 30px;
+    background: radial-gradient(62.18% 54.45% at 86.54% 30.99%, #D07737 19.27%, #C01C57 100%);
+}
+
+.quiz img {
+    aspect-ratio: 1;
+    width: 10vw;
+    z-index: 10;
+    transform: scale(1.5);
+    padding-right: 40px;
+}
+
+.quiz-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /* margin: 0 5vw; */
+}
+
+.quiz-content h1 {
+    color: #fff;
+    font-family: 'Raleway';
+    font-size: 2.020vw;
+    width: 30%;
+    padding-left: 10%;
+}
+
+.dice {
+    width: 257px;
+    height: 236px;
+    flex-shrink: 0;
+    border-radius: 30px;
+    background: #2E2668;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.jackpot {
+    width: 257px;
+    height: 236px;
+    flex-shrink: 0;
+    border-radius: 30px;
+    background: #2E2668;
+}
+
+.dice-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.dice-content h1 {
+    color: #fff;
+    font-family: 'Raleway';
+    /* padding-left: 5%; */
 }
