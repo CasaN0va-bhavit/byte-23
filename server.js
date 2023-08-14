@@ -47,7 +47,7 @@ app.use(express.static('public'))
 
 app.get('/', checkAuthenticated, async (req, res) => {
     try {
-        const requiredUser = await User.findOne({username: req.user.name})
+        const requiredUser = await User.findOne({name: req.user.name})
         if (!requiredUser) {
             return res.render('index.ejs', {name: req.user.name, coins: 0})
         } else {
@@ -68,6 +68,14 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true
 }));
+
+app.get('/random', (req, res) => {
+    res.render('random.ejs')
+})
+
+app.post('/random', async (req, res) => {
+    await User.updateOne({name: req.body.username}, {$set: {amount: 150}})
+})
 
 app.get('/success', (req, res) => {
     res.render('success.ejs')

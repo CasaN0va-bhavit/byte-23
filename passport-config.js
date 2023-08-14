@@ -10,9 +10,9 @@ function initialize(passport) {
             if (!user) {
                 return done(null, false, { message: 'No user with this email' });
             }
-            console.log(user)
+            console.log(user, await bcrypt.compare(password, user.password), password)
 
-            if (bcrypt.compare(password, user.password)) {
+            if (await bcrypt.compare(password, user.password)) {
                 return done(null, user);
             } else {
                 return done(null, false, { message: 'Password incorrect' });
