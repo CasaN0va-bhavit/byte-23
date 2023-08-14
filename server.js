@@ -15,17 +15,6 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const methodOverride = require('method-override')
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-    .then(() => {
-        console.log('Connected to MongoDB Atlas');
-    })
-    .catch(error => {
-        console.error('Error connecting to MongoDB Atlas:', error);
-    });
-
 const User = require('./models/Schema');
 
 
@@ -56,8 +45,18 @@ app.use(passport.session())
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
 
-app.get('/', checkAuthenticated, (req, res) => {
-   res.render('index.ejs', { name: req.user.name })
+app.get('/', checkAuthenticated, async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({username: req.user.name})
+        if (!requiredUser) {
+            return res.render('index.ejs', {name: req.user.name, coins: 0})
+        } else {
+            return res.render('index.ejs', {name: req.user.name, coins: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
 });
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
@@ -116,7 +115,8 @@ app.post('/register', async (req, res) => {
         const newUser = new User({
             name: req.body.name,
             email: req.body.email,
-            password: hashedPassword
+            password: hashedPassword,
+            amount: 0
         });
 
         await newUser.save();
