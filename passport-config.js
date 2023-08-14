@@ -1,6 +1,6 @@
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt")
-const User = require('./models/Schema'); // Import the user model from your models directory
+const User = require('./models/Schema');
 
 function initialize(passport) {
     const authenticateUser = async (email, password, done) => {
@@ -10,11 +10,8 @@ function initialize(passport) {
             if (!user) {
                 return done(null, false, { message: 'No user with this email' });
             }
-
-            // Since you've removed bcrypt password comparison, you might have your own authentication logic here
-            
-            // For example:
             console.log(user)
+
             if (bcrypt.compare(password, user.password)) {
                 return done(null, user);
             } else {

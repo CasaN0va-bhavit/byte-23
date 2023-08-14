@@ -75,10 +75,10 @@ body {
 
 
 .cards {
-    margin-top: 12vw;
+    margin-top: 6vw;
     display: flex;
     flex-wrap: wrap;
-    gap: 3vw;
+    gap: 4vw;
 }
 
 .quiz {
@@ -118,8 +118,8 @@ body {
 }
 
 .dice {
-    width: 257px;
-    height: 236px;
+    width: 12.980vw;
+    height: 11.919vw;
     flex-shrink: 0;
     border-radius: 30px;
     background: #2E2668;
@@ -128,8 +128,8 @@ body {
     align-items: center;
 }
 .jackpot {
-    width: 257px;
-    height: 236px;
+    width: 12.980vw;
+    height: 11.919vw;
     flex-shrink: 0;
     border-radius: 30px;
     background: #2E2668;
@@ -145,4 +145,47 @@ body {
     color: #fff;
     font-family: 'Raleway';
     /* padding-left: 5%; */
+    width: 30%;
+    font-size: 2.020vw;
+    padding-left: 15%;
+}
+
+.small-cards {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+}
+
+@media screen and (max-width: 1500px) {
+    .dice img {
+        width: 40%;
+    }
+}
+
+.dice img {
+    width: 40%;
+    margin-left: 5%;
+}
+
+@media screen and (max-width: 1500px) {
+    .jackpot img {
+        width: 60%;
+        margin-left: 25%;
+        margin-bottom: 10%;
+    }
+}
+
+.jackpot img {
+    width: 60%;
+    margin-left: 25%;
+    margin-top: -10%;
+}
+
+.jackpot h1 {
+    color: #fff;
+    font-family: 'Raleway';
+    font-size: 2.020vw;
+    width: 30%;
+    padding-left: 10%;
+    margin-bottom: -1.5vw;
 }
