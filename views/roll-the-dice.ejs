@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roll The Dice!</title>
+    <style>
+        .container {
+            display: flex;
+        }
+        .dice1, .dice2 {
+            padding: 20px;
+            font-size: 1.5em;
+            margin-right: 20px;
+            background: #eee
+        }
+    </style>
+</head>
+<body>
+    <form action="/roll-the-dice" method="post">
+        <input type="number" name="amount" placeholder="Place your bet:" required>
+        <input type="submit" value="Roll The Dice!">
+    </form>
+    <p><%- amount %></p>
+    <div class="container">
+        <div class="dice1">
+            <%- dice1 %>
+        </div>
+        <div class="dice2">
+            <%- dice2 %>
+        </div>
+    </div>
+    
+</body>
+</html>
