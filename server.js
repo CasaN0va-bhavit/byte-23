@@ -181,6 +181,13 @@ app.post('/register', async (req, res) => {
 
 app.get('/meme', checkAuthenticated, (req, res) => {
     res.render('meme.ejs')
+});
+
+app.get('/elon', (req,res) => {
+    res.render('choseMusk.ejs', {amount: 0})
+})
+app.get('/zuck', (req,res) => {
+    res.render('choseZuck.ejs', {amount: 0})
 })
 
 function checkAuthenticated(req, res, next) {
