@@ -52,9 +52,9 @@ app.get('/', checkAuthenticated, async (req, res) => {
     try {
         const requiredUser = await User.findOne({name: req.user.name})
         if (!requiredUser) {
-            return res.render('index.ejs', {name: req.user.name, coins: 0})
+            return res.render('index.ejs', {name: req.user.name, amount: 0})
         } else {
-            return res.render('index.ejs', {name: req.user.name, coins: requiredUser.amount})
+            return res.render('index.ejs', {name: req.user.name, amount: requiredUser.amount})
         }
     } catch(err) {
         console.log(err)
@@ -63,7 +63,7 @@ app.get('/', checkAuthenticated, async (req, res) => {
 });
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
-    res.render('login.ejs')
+    res.render('login.ejs', {amount: 0})
 });
 
 app.post('/login', checkNotAuthenticated, (req, res, next) => {
@@ -71,7 +71,7 @@ app.post('/login', checkNotAuthenticated, (req, res, next) => {
 });
 
 app.get('/random', (req, res) => {
-    res.render('random.ejs')
+    res.render('random.ejs', {amount: 0})
 })
 
 // Take the money
@@ -84,7 +84,7 @@ app.post('/random', async (req, res) => {
     // console.log(email);
     const price = parseInt(req.body.price)
     await User.updateOne({email: email}, {$set: {amount: price}})
-    res.render('success.ejs')
+    res.render('success.ejs', {amount: 0})
 })
 
 app.get('/roll-the-dice', (req, res) => {
@@ -123,11 +123,11 @@ app.post('/roll-the-dice', (req, res) => {
 })
 
 app.get('/success', (req, res) => {
-    res.render('success.ejs')
+    res.render('success.ejs', {amount: 0})
 });
 
 app.get('/cancel', checkAuthenticated, (req, res) => {
-    res.render('cancel.ejs')
+    res.render('cancel.ejs', {amount: 0})
 });
 
 const DOMAIN = 'http://localhost:3000';
@@ -136,7 +136,7 @@ app.post('/create-checkout-session', checkAuthenticated, async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
-        price: 'price_1Nee1sSEAo4msgGAF0PmErpK',
+        price: 10,
         quantity: 1,
       },
     ],
@@ -150,7 +150,7 @@ app.post('/create-checkout-session', checkAuthenticated, async (req, res) => {
 
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
-    res.render('register.ejs')
+    res.render('register.ejs', {amount: 0})
 });
 
 app.post('/logout', (req, res) => {
@@ -159,7 +159,7 @@ app.post('/logout', (req, res) => {
             // smth
         }
     })
-    res.redirect('/login');
+    res.redirect('/login', {amount: 0});
 });
 
 app.post('/register', async (req, res) => {
@@ -173,9 +173,9 @@ app.post('/register', async (req, res) => {
         });
 
         await newUser.save();
-        res.redirect('/login');
+        res.redirect('/login', {amount: 0});
     } catch (error) {
-        res.redirect('/register');
+        res.redirect('/register', {amount: 0});
     }
 });
 
@@ -188,6 +188,10 @@ app.get('/elon', (req,res) => {
 })
 app.get('/zuck', (req,res) => {
     res.render('choseZuck.ejs', {amount: 0})
+})
+
+app.get('/bet', (req, res) => {
+    res.render('bet.ejs', {amount: 0})
 })
 
 function checkAuthenticated(req, res, next) {
