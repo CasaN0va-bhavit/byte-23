@@ -1,191 +1,92 @@
+@import url('https://db.onlinewebfonts.com/c/6182518f7bc0b240b3a35699686e85d5?family=Mortend');
 body {
-    margin: 0;
-    background: #111018;
+    background: #0A0913;
+    background-image: url('https://cdn.discordapp.com/attachments/1139581573855969360/1140859026905763950/image.png');
+    background-size: cover;
+    z-index: inherit;
+}
+
+.home-content {
     height: auto;
-}
-
-.nav2 {
-    height: auto;
-    width: 19.495vw;
-    background: #141321;
-    display: flex;
-}
-
-.container {
-    width: 100vw;
-    height: 49vw;
-    display: flex;
-    flex-direction: row;
-}
-
-.greeting {
-    color: #fff;
-    font-size: 2.5em;
-    font-family: 'Raleway';
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-
-.content {
-    margin-left: 10vw;
-    margin-top: 6vw;
-    width: 60vw;
-}
-
-.spin-the-wheel {
-    width: 45%;
-    height: 12vw;
-    flex-shrink: 0;
-    border-radius: 30px;
-    background: radial-gradient(74.30% 63.46% at 88.81% 25.35%, #A042FE 10.94%, #4820EA 90.63%);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    /* margin-left: 5vw; */
-    /* padding: 5vw; */
-}
-
-.spin-the-wheel img {
-    aspect-ratio: 1;
-    width: 10.758vw;
-    z-index: 10;
-    transform: scale(1.5);
-    padding-right: 40px;
-}
-
-
-.items-wheel {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     width: 100%;
-    /* margin: 0 5vw; */
+    display: flex;
+    flex-direction: column;
 }
 
+.names {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-between;
+    align-self: center;
+}
 
-.items-wheel h1 {
+.elon {
+    color: #4BB4FF;
+    font-family: Mortend;
+    font-size: 1.667vw;
+    width: 150px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.mark {
+    text-align: end;
+    width: 320px;
+    color: #FF4773;
+    font-family: Mortend;
+    font-size: 1.667vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.titles {
+    align-self: center;
     color: #fff;
-    font-family: 'Raleway';
-    font-size: 2.020vw;
-    width: 30%;
-    padding-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    width: 70%;
+    color: #FFF;
+    text-align: center;
+    font-family: "Facon";
+    font-size: 8.438vw;
+    font-style: italic;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 0;
+    margin-top: 2vw;
+}
+
+.news {
+    color: #FFF;
+    text-align: center;
+    font-family: Mortend;
+    font-size: 1.667vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 
 .cards {
-    margin-top: 6vw;
     display: flex;
-    flex-wrap: wrap;
-    gap: 4vw;
+    gap: 3vw;
+    align-self: center;
+    margin-top: 4.219vw;
+    margin-bottom: 5vw;
 }
 
-.quiz {
-    width: 45%;
-    height: 12vw;
+.card {
+    width: 18.714vw;
+    height: 11.354vw;
     flex-shrink: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-radius: 30px;
-    background: radial-gradient(62.18% 54.45% at 86.54% 30.99%, #D07737 19.27%, #C01C57 100%);
-}
-
-.quiz img {
-    aspect-ratio: 1;
-    width: 10vw;
-    z-index: 10;
-    transform: scale(1.5);
-    padding-right: 40px;
-}
-
-.quiz-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    /* margin: 0 5vw; */
-}
-
-.quiz-content h1 {
-    color: #fff;
-    font-family: 'Raleway';
-    font-size: 2.020vw;
-    width: 30%;
-    padding-left: 10%;
-}
-
-.dice {
-    width: 12.980vw;
-    height: 11.919vw;
-    flex-shrink: 0;
-    border-radius: 30px;
-    background: #2E2668;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-.jackpot {
-    width: 12.980vw;
-    height: 11.919vw;
-    flex-shrink: 0;
-    border-radius: 30px;
-    background: #2E2668;
-}
-
-.dice-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.dice-content h1 {
-    color: #fff;
-    font-family: 'Raleway';
-    /* padding-left: 5%; */
-    width: 30%;
-    font-size: 2.020vw;
-    padding-left: 15%;
-}
-
-.small-cards {
-    display: flex;
-    flex-direction: row;
-    gap: 1vw;
-}
-
-@media screen and (max-width: 1500px) {
-    .dice img {
-        width: 40%;
-    }
-}
-
-.dice img {
-    width: 40%;
-    margin-left: 5%;
-}
-
-@media screen and (max-width: 1500px) {
-    .jackpot img {
-        width: 60%;
-        margin-left: 25%;
-        margin-bottom: 10%;
-    }
-}
-
-.jackpot img {
-    width: 60%;
-    margin-left: 25%;
-    margin-top: -10%;
-}
-
-.jackpot h1 {
-    color: #fff;
-    font-family: 'Raleway';
-    font-size: 2.020vw;
-    width: 30%;
-    padding-left: 10%;
-    margin-bottom: -1.5vw;
+    border-radius: 21.91px;
+    background: radial-gradient(103.57% 91.88% at 71.80% 38.53%, rgba(78, 26, 189, 0.60) 0%, rgba(17, 1, 200, 0.00) 100%);
+    backdrop-filter: blur(16.432161331176758px);
 }

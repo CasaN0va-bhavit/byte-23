@@ -5,53 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="index.css">
+    <link href="https://db.onlinewebfonts.com/c/b6d3c75722af4490900128147524d7d4?family=Facon" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <%- include('./partials/navbar') %>
-    <div class="container">
-        <div class="nav2"></div>
-        <div class="content">
-            <h1 class="greeting">Hey <%= name %></h1>
-            <!-- <h1 class="greeting"></h1> -->
-            <div class="cards">
-                <div class="spin-the-wheel">
-                    <div class="items-wheel">
-                        <h1>Spin the Wheel</h1>
-                        <img src="https://cdn.discordapp.com/attachments/1080157954570993664/1140613395175968900/image.png" alt="">
-                    </div>
-                </div>
-                <div class="quiz">
-                    <div class="quiz-content">
-                        <h1>Take A Quiz</h1>
-                        <img src="https://cdn.discordapp.com/attachments/1080157954570993664/1140625922588950568/image.png" alt="">
-                    </div>
-                </div>
-                <div class="quiz">
-                    <div class="quiz-content">
-                        <h1>Take A Quiz</h1>
-                        <img src="https://cdn.discordapp.com/attachments/1080157954570993664/1140625922588950568/image.png" alt="">
-                    </div>
-                </div>
-                <div class="small-cards">
-                    <div class="dice">
-                        <div class="dice-content">
-                            <h1>Roll A Dice</h1>
-                            <img src="https://cdn.discordapp.com/attachments/1080157954570993664/1140651225407299714/image.png" alt="">
-                        </div>
-                    </div>
-                    <div class="jackpot">
-                        <div class="jackpot-content">
-                            <h1>Jack</h1>
-                            <h1>pot</h1>
-                            <img src="https://cdn.discordapp.com/attachments/1080157954570993664/1140653656534953984/image.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="home-content">
+        <div class="names">
+            <h1 class="elon">Elon Musk</h1>
+            <h1 class="mark">Mark Zuckerberg</h1>
         </div>
-        <form action="/logout" method="POST">
-            <button type="submit">Logout</button>
-        </form>
+        <div class="titles">
+            <h1 class="title">Bet. Win. Thrive.</h1>
+            <h1 class="news">One liner news.</h1>
+        </div>
+        <div class="cards">
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+        </div>
     </div>
 </body>
 </html>

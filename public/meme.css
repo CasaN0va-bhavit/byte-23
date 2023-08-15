@@ -1,0 +1,74 @@
+body {
+    background: #0A0913;
+    background-image: url('https://cdn.discordapp.com/attachments/1139581573855969360/1140859026905763950/image.png');
+    background-size: cover;
+    z-index: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.upper {
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.title {
+    color: #FFF;
+    text-align: center;
+    font-family: "Facon";
+    font-size: 8.438vw;
+    font-style: italic;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 0;
+    margin-top: 2vw;
+    z-index: 10;
+}
+
+.card {
+    border-radius: 21.91px;
+    background: rgba(39, 34, 90, 0.60);
+    backdrop-filter: blur(16.432161331176758px);
+    width: 31.094vw;
+    height: 35.092vh;
+    flex-shrink: 0;
+}
+
+.rectangle-blue img, .rectangle-red img {
+    width: 3.021vw;
+    height: 34.907vh;
+    flex-shrink: 0;
+}
+
+.rectangle-blue {
+    margin-right: 2vw;
+}
+
+.rectangle-red {
+    margin-left: 2vw;
+}
+
+.leaderboard {
+    margin-left: 15vw;
+    margin-top: 2vw;
+}
+
+.leaderboard h1 {
+    font-size: 1.667vw;
+    color: #FFF;
+    font-family: Mortend;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

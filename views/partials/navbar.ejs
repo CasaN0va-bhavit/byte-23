@@ -5,127 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-        @font-face {
-            font-family: 'Integral';
-            src: url('../../fonts/IntegralCF-Regular.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
+        @import url('https://db.onlinewebfonts.com/c/6182518f7bc0b240b3a35699686e85d5?family=Mortend');
         body {
-            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
         }
-        .nav{
-            width: 100vw;
-            height: 5.455vw;
-            flex-shrink: 0;
-            /* border-radius: 30px; */
-            background: #1B1832;
+        nav {
+            width: 100%;
+            height: 13.89vh;
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: space-between;
-            color: #fff;
-            font-family: 'Raleway';
+            /* background: red; */
         }
-        .items {
-            width: 100vw;
-            margin: 8vw;
+        nav .nav-content {
             display: flex;
+            width: 100%;
             flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .left {
-            font-size: 1.667vw;
-        }
-        .rectangle {
-            width: 13.698vw;
-            height: 3vw;
-            border-radius: 30px;
-            background: #111018;
-            margin-right: 5vw;
-            display: flex;
-            align-items: center;
-            flex-direction: row;
-        }
-        .right {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
             justify-content: center;
+            padding: 15.625vw;
         }
-        .circle {
-            width: 2vw;
-            height: 2vw;
-            flex-shrink: 0;
-            fill: #C01C57;
-        }
-        .creds {
+
+        .nav-links {
+            width: 100%;
             display: flex;
             flex-direction: row;
-            gap: 2vw;
+            justify-content: space-between;
+            padding: 0;
         }
-        .left h1 {
-            font-size: 32px;
-        }
-        .nav-content {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-        .nav-content h1 {
-            color: #6D55FF;
-            text-align: center;
-            font-family: 'Raleway', sans-serif;
-            font-size: 22px;
+
+        .nav-links li {
+            list-style-type: none;
+            color: #FFF;
+            font-family: Mortend;
+            font-size: 1.667vw;
             font-style: normal;
-            font-weight: 900;
+            font-weight: 700;
             line-height: normal;
-            margin-left: 1vw;
+            cursor: pointer;
         }
-        .coins {
-            border-radius: 30px;
-            border: 8px solid #111018;
-            background: #1B1832;
-            width: 7vw;
-            height: 1.55vw;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #FFF;
         }
-        .coins p {
-            margin-left: 1vw;
+        
+        .nav-links li:hover {
+            text-decoration-line: underline;
         }
     </style>
 </head>
 <body>
+    
     <nav>
-        <div class="nav">
-            <div class="items">
-                <div class="left">
-                    <h1>XYZ.COM</h1>
-                </div>
-                <div class="right">
-                    <div class="rectangle">
-                        <div class="nav-content">
-                            <h1>COINS</h1>
-                            <div class="coins">
-                                <p><%- coins %></p>
-                            </div>  
-                        </div>
-                    </div>
-                    <div class="creds">
-                        <p>Username</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 51 51" fill="none">
-                            <circle cx="25.5" cy="25.5" r="25.5" fill="#C01C57"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+        <div class="nav-content">
+            <ul class="nav-links">
+                <li><A href="/">Home</A></li>
+                <li><A href="#">Arena</A></li>
+                <li><A href="#">Stream</A></li>
+                <li><A href="#">Community</A></li>
+                <li><A href="#">Bet</A></li>
+                <li><A href="/meme">Meme</A></li>
+            </ul>
         </div>
     </nav>
-
     
 </body>
 </html>

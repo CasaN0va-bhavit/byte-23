@@ -132,6 +132,10 @@ app.post('/register', async (req, res) => {
     } catch (error) {
         res.redirect('/register');
     }
+});
+
+app.get('/meme', (req, res) => {
+    res.render('meme.ejs')
 })
 
 function checkAuthenticated(req, res, next) {
