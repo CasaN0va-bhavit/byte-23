@@ -1,6 +1,6 @@
 body {
     background: #0A0913;
-    background-image: url('https://cdn.discordapp.com/attachments/1139581573855969360/1140859026905763950/image.png');
+    background-image: url('https://cdn.discordapp.com/attachments/1080157954570993664/1140927778020134932/image.png');
     background-size: cover;
     z-index: inherit;
     margin: 0;
@@ -16,18 +16,37 @@ body {
 
 .upper {
     height: auto;
+    width: 100%;
     display: flex;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     margin-bottom: 0;
+}
+
+.container {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.upper .doosra {
+    align-self: flex-start !important;
+    text-align: start;
 }
 
 .title {
     color: #FFF;
     text-align: center;
     font-family: "Facon";
-    font-size: 8.438vw;
+    font-size: 4.141vw;
     font-style: italic;
     font-weight: 700;
     line-height: normal;
@@ -43,32 +62,41 @@ body {
     width: 31.094vw;
     height: 35.092vh;
     flex-shrink: 0;
-}
-
-.rectangle-blue img, .rectangle-red img {
-    width: 3.021vw;
-    height: 34.907vh;
-    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .rectangle-blue {
-    margin-right: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 100%;
 }
 
 .rectangle-red {
-    margin-left: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 100%;
 }
 
-.leaderboard {
-    margin-left: 15vw;
-    margin-top: 2vw;
+.rectangle-blue img, .rectangle-red img {
+    height: 5.37vh;
+    width: 31.094vw;
+    flex-shrink: 0;
+    margin: 0;
+    justify-self: flex-end;
+    /* margin-top: 29.722vh; */
+    position: relative;
 }
 
-.leaderboard h1 {
-    font-size: 1.667vw;
-    color: #FFF;
-    font-family: Mortend;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+
+
+.titles {
+    display: flex;
+    align-items: flex-start !important;
+}
+
+.titles h1 {
+    text-align: start !important;
 }
