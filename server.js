@@ -91,6 +91,10 @@ app.get('/success', (req, res) => {
     res.render('success.ejs')
 });
 
+app.get('/bet', (req, res) => {
+    res.render('bet.ejs')
+});
+
 app.get('/cancel', (req, res) => {
     res.render('cancel.ejs')
 });
