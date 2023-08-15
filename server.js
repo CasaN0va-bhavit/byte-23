@@ -54,7 +54,7 @@ app.get('/', checkAuthenticated, async (req, res) => {
         if (!requiredUser) {
             return res.render('index.ejs', {name: req.user.name, amount: 0})
         } else {
-            return res.render('index.ejs', {name: req.user.name, amount: requiredUser.amount})
+            return res.render('index.ejs', {name: req.user.name, amou   : requiredUser.amount})
         }
     } catch(err) {
         console.log(err)
@@ -133,10 +133,19 @@ app.get('/cancel', checkAuthenticated, (req, res) => {
 const DOMAIN = 'http://localhost:3000';
 
 app.post('/create-checkout-session', checkAuthenticated, async (req, res) => {
+    var elements = stripe.elements({
+        clientSecret: 'sk_test_51Ndu0lSEAo4msgGAQHyHvaqFFjBdMStrs8YUkxNSEvFoKtcEaHRR1KDPMLJTfi6wGoh6WrhUuPQNu5ieAqmbFFDv006B7JHZEh',
+      });
+
+      var elements = stripe.elements({
+        mode: 'payment',
+        currency: 'inr',
+        amount: 6969696969,
+      });
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
-        price: 10,
+        price: 'price_1Nee1sSEAo4msgGAF0PmErpK',
         quantity: 1,
       },
     ],

@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     background: #0A0913;
     background-image: url('https://cdn.discordapp.com/attachments/1080157954570993664/1141022530254155796/image.png');
@@ -27,7 +31,7 @@ body {
 
 .content {
     flex-grow: 1;
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -39,9 +43,6 @@ body {
     flex-direction: column;
 }
 
-.text {
-    /* flex-grow: 1; */
-}
 
 .title {
     color: #FFF;
@@ -83,10 +84,6 @@ body {
 .cards img {
     width: 15.960vw;
     height: 23.485vw;
-}
-
-.content2 img {
-    /* margin-bottom: 8.5vh; */
 }
 
 .text {
@@ -137,3 +134,109 @@ body {
     font-weight: 700;
     line-height: normal;
 }
+
+.content3 {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    flex-grow: 1;
+    width: 40vw;
+}
+
+.container1 {
+    padding-right: 50px;
+    width: 50%;
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container1 form {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    margin-top: 5vw;
+}
+
+.container1 label {
+    color: #FFF;
+    font-family: Mortend;
+    font-size: 1.5em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 2vh;
+}
+
+.container1 input {
+    width: 100%;
+    height: 3.283vw;
+    flex-shrink: 0;
+    border-radius: 21.91px;
+    background: radial-gradient(364.51% 127.51% at 21.29% 20.41%, rgba(78, 26, 189, 0.60) 0%, rgba(17, 1, 200, 0.00) 100%);
+    backdrop-filter: blur(16.432161331176758px);
+    outline: none;
+    border: none;
+    color: #fff;
+    padding-left: 12px;
+    font-size: 1.3em;
+}
+
+.container1 button {
+    width: 100%;
+    height: 5.152vw;
+    flex-shrink: 0;
+    border-radius: 21.91px;
+    background: #4E1ABD;
+    backdrop-filter: blur(16.432161331176758px);
+    color: #FFF;
+    text-align: center;
+    font-family: Mortend;
+    font-size: 1.3em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: none;
+    outline: none;
+    margin-top: 10vh;
+}
+
+.containerDoosra {
+    flex-grow: 1;
+    width: 50%;
+    /* background-color: #fff; */
+    color: #fff;
+    padding-left: 20px;
+}
+
+
+/* 800 - 80 */
+/* + - 60 */
+
+@media screen and (min-height: 800px) {
+    .chosen {
+        width: 60%;
+    }
+}
+@media screen and (max-height: 800px) {
+    .containerDoosra {
+        height: 80%;
+    }
+}
+
+.containerDoosra form {
+    padding-top: 3.232vw;
+    margin-top: 5vw;
+    /* flex-grow: 1; */
+    width: 100%;
+    height: 60%;
+    flex-shrink: 0;
+    border-radius: 21.91px;
+    background: radial-gradient(162.69% 74.19% at 40.51% 37.63%, rgba(78, 26, 189, 0.60) 11.73%, rgba(17, 1, 200, 0.00) 100%);
+    backdrop-filter: blur(16.432161331176758px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
