@@ -14,6 +14,8 @@ const session = require('express-session');
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const methodOverride = require('method-override')
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+const globalUserName = "";
 
 const User = require('./models/Schema');
 
@@ -31,6 +33,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }))
 app.set("view-engine", "ejs")
 app.set('views', 'views')
+app.use(cookieParser())
 app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -63,18 +66,25 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs')
 });
 
-app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true
-}));
+app.post('/login', checkNotAuthenticated, (req, res, next) => {
+    loginUser(req, res, next)
+});
 
 app.get('/random', (req, res) => {
     res.render('random.ejs')
 })
 
+// Take the money
+// Sort the array
+// Place it on the frontend
+
+
 app.post('/random', async (req, res) => {
-    await User.updateOne({name: req.body.username}, {$set: {amount: 150}})
+    const email = req.cookies["username"];
+    // console.log(email);
+    const price = parseInt(req.body.price)
+    await User.updateOne({email: email}, {$set: {amount: price}})
+    res.render('success.ejs')
 })
 
 app.get('/success', (req, res) => {
@@ -134,7 +144,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
-app.get('/meme', (req, res) => {
+app.get('/meme', checkAuthenticated, (req, res) => {
     res.render('meme.ejs')
 })
 
@@ -153,6 +163,20 @@ function checkNotAuthenticated(req, res, next) {
     }
 
     next()
+}
+
+function loginUser(req, res, next) {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) throw err;
+        if (!user) res.send([{ msg: info.message }]);
+        else {
+            req.logIn(user, (err) => {
+                if (err) throw err;
+                res.cookie("username", user.email)
+                res.redirect('/');
+            });
+        }
+    })(req, res, next);
 }
 
 app.listen(3000, function(){
