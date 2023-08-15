@@ -87,21 +87,52 @@ app.post('/random', async (req, res) => {
     res.render('success.ejs')
 })
 
+app.get('/roll-the-dice', (req, res) => {
+    res.render('roll-the-dice.ejs', {
+        amount: null,
+        dice1: null,
+        dice2: null
+    })
+})
+
+app.post('/roll-the-dice', (req, res) => {
+    const possibilities = [1,1,1,2,2,3,3,4,5,6]
+    const chosenNumberDiceOne = possibilities[Math.floor(Math.random() * 10)]
+    const chosenNumberDiceTwo = possibilities[Math.floor(Math.random() * 10)]
+    const totalNumber = chosenNumberDiceOne + chosenNumberDiceTwo
+    console.log(totalNumber)
+    if (totalNumber == 12) {
+        res.render('roll-the-dice.ejs', {
+            dice1: chosenNumberDiceOne,
+            dice2: chosenNumberDiceTwo,
+            amount: parseInt(req.body.amount) * 3
+        })
+    }
+    if (totalNumber >= 7) {
+        res.render('roll-the-dice.ejs', {
+            dice1: chosenNumberDiceOne, 
+            dice2: chosenNumberDiceTwo,
+            amount: parseInt(req.body.amount) * 1.5
+        })
+    } else {
+        res.render('roll-the-dice.ejs', {
+            dice1: chosenNumberDiceOne, 
+            dice2: chosenNumberDiceTwo,
+            amount: -(parseInt(req.body.amount))})
+    }
+})
+
 app.get('/success', (req, res) => {
     res.render('success.ejs')
 });
 
-app.get('/bet', (req, res) => {
-    res.render('bet.ejs')
-});
-
-app.get('/cancel', (req, res) => {
+app.get('/cancel', checkAuthenticated, (req, res) => {
     res.render('cancel.ejs')
 });
 
 const DOMAIN = 'http://localhost:3000';
 
-app.post('/create-checkout-session', async (req, res) => {
+app.post('/create-checkout-session', checkAuthenticated, async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
