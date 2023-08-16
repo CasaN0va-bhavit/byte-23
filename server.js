@@ -34,6 +34,7 @@ app.use(express.urlencoded({ extended: false }))
 app.set("view-engine", "ejs")
 app.set('views', 'views')
 app.use(cookieParser())
+app.use(express.json())
 app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -143,28 +144,22 @@ app.get('/cancel', checkAuthenticated, (req, res) => {
 const DOMAIN = 'http://localhost:3000';
 
 app.post('/create-checkout-session', checkAuthenticated, async (req, res) => {
-    var elements = stripe.elements({
-        clientSecret: 'sk_test_51Ndu0lSEAo4msgGAQHyHvaqFFjBdMStrs8YUkxNSEvFoKtcEaHRR1KDPMLJTfi6wGoh6WrhUuPQNu5ieAqmbFFDv006B7JHZEh',
-      });
-
-      var elements = stripe.elements({
-        mode: 'payment',
-        currency: 'inr',
-        amount: 6969696969,
-      });
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price: 'price_1Nee1sSEAo4msgGAF0PmErpK',
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    success_url: `${DOMAIN}/success`,
-    cancel_url: `${DOMAIN}/cancel`,
-  });
-
-  res.redirect(303, session.url);
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: parseInt(req.body.coins + "00"),
+        currency: "inr",
+        confirmation_method: 'manual'
+    })
+    const confirmPayment = await stripe.paymentIntents.confirm(
+        paymentIntent.id,
+        {
+            payment_method: "pm_card_visa",
+            return_url: "https://google.com"
+        },
+    )
+    res.redirect(confirmPayment.next_action.redirect_to_url.url)
+    const intentCaptured = await stripe.paymentIntents.capture(
+        paymentIntent.id
+    )
 });
 
 
@@ -223,15 +218,59 @@ app.get('/meme', checkAuthenticated, async (req, res) => {
     }
 });
 
-app.get('/elon', (req,res) => {
-    res.render('choseMusk.ejs', {amount: 0})
+app.get('/elon', checkAuthenticated, async(req,res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('choseMusk.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('choseMusk.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
 })
-app.get('/zuck', (req,res) => {
-    res.render('choseZuck.ejs', {amount: 0})
+app.get('/zuck', checkAuthenticated, async (req,res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('choseZuck.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('choseZuck.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
 })
 
-app.get('/bet', (req, res) => {
-    res.render('bet.ejs', {amount: 0})
+app.get('/bet', checkAuthenticated, async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('bet.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('bet.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
+})
+
+app.get('/spin-the-wheel', checkAuthenticated, async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('spinTheWheel.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('spinTheWheel.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
 })
 
 function checkAuthenticated(req, res, next) {
