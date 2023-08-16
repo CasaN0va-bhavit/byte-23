@@ -36,6 +36,9 @@ body {
     top: 40%;
     align-self: end;
     margin-right: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
 }
 
 .elon-title {
@@ -63,8 +66,9 @@ body {
     /* height: 30px; */
 }
 .mark img {
-    margin-left: ;
-    width: 160px;
+    /* margin-left: ; */
+    width: 140px;
+    align-self: end;
     /* height: 60px; */
 }
 
