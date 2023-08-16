@@ -117,30 +117,40 @@ app.get('/roll-the-dice', checkAuthenticated, async (req, res) => {
     })
 })
 
-app.post('/roll-the-dice', (req, res) => {
+app.post('/roll-the-dice', async (req, res) => {
     const possibilities = [1,1,1,2,2,3,3,4,5,6]
     const chosenNumberDiceOne = possibilities[Math.floor(Math.random() * 10)]
     const chosenNumberDiceTwo = possibilities[Math.floor(Math.random() * 10)]
     const totalNumber = chosenNumberDiceOne + chosenNumberDiceTwo
     console.log(totalNumber)
-    if (totalNumber == 12) {
-        res.render('roll-the-dice.ejs', {
-            dice1: chosenNumberDiceOne,
-            dice2: chosenNumberDiceTwo,
-            amount: parseInt(req.body.amount) * 3
-        })
-    }
-    if (totalNumber >= 7) {
-        res.render('roll-the-dice.ejs', {
-            dice1: chosenNumberDiceOne, 
-            dice2: chosenNumberDiceTwo,
-            amount: parseInt(req.body.amount) * 1.5
-        })
-    } else {
-        res.render('roll-the-dice.ejs', {
-            dice1: chosenNumberDiceOne, 
-            dice2: chosenNumberDiceTwo,
-            amount: -(parseInt(req.body.amount))})
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (totalNumber == 12) {
+            const amountToSet = requiredUser.amount + (parseInt(req.body.amount) * 3)
+            res.render('roll-the-dice.ejs', {
+                dice1: chosenNumberDiceOne,
+                dice2: chosenNumberDiceTwo,
+                amount: amountToSet
+            })
+        }
+        if (totalNumber >= 7) {
+            const amountToSet = requiredUser.amount + (parseInt(req.body.amount) * 1.5)
+            res.render('roll-the-dice.ejs', {
+                dice1: chosenNumberDiceOne, 
+                dice2: chosenNumberDiceTwo,
+                amount: amountToSet
+            })
+        } else {
+            const amountToSet = requiredUser.amount - parseInt(req.body.amount)
+            res.render('roll-the-dice.ejs', {
+                dice1: chosenNumberDiceOne, 
+                dice2: chosenNumberDiceTwo,
+                amount: amountToSet
+            })
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
     }
 })
 
