@@ -54,7 +54,7 @@ app.get('/', checkAuthenticated, async (req, res) => {
         if (!requiredUser) {
             return res.render('index.ejs', {name: req.user.name, amount: 0})
         } else {
-            return res.render('index.ejs', {name: req.user.name, amou   : requiredUser.amount})
+            return res.render('index.ejs', {name: req.user.name, amount: requiredUser.amount})
         }
     } catch(err) {
         console.log(err)
