@@ -187,7 +187,7 @@ app.post('/payNowConfig', checkAuthenticated, async (req, res) => {
 app.post('/stripeConfig', checkAuthenticated, (req, res) => {
     if (req.body.stripeSuperSecretMsg === 'yes') {
         res.send({
-            publishableKey: process.env.STRIPE_PUBLISHABLE_KEY
+            publishableKey: "pk_test_51Ndu0lSEAo4msgGASUJsJVUQ8UujVQNECIAxjqMEuoPsgs53MpcLMFHsWm2oPtklpcs3FjwTtIXeNrmv9Px3KPQK00Qtvp6J0U"
         })
     } else {
         res.send(req.body)
