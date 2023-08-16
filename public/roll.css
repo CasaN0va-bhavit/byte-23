@@ -1,0 +1,100 @@
+@import url('https://db.onlinewebfonts.com/c/6182518f7bc0b240b3a35699686e85d5?family=Mortend');
+body {
+    background: #0A0913;
+    background-image: url('https://cdn.discordapp.com/attachments/1139581573855969360/1140946342550700032/image.png');
+    background-size: cover;
+    z-index: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-family: Mortend;
+    color: #fff;
+    align-self: center;
+}
+
+.roll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container2 {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    align-items: center;
+    flex-grow: 1;
+    width: 20%;
+}
+
+.dice1, .dice2 {
+    background: radial-gradient(364.51% 127.51% at 21.29% 20.41%, rgba(78, 26, 189, 0.60) 0%, rgba(17, 1, 200, 0.00) 100%);
+    backdrop-filter: blur(16.432161331176758px);
+    width: 50%;
+    height: 5vh;
+    border-radius: 21.91px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vw;
+    padding: 6px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs {
+    border-radius: 21.91px;
+    background: radial-gradient(364.51% 127.51% at 21.29% 20.41%, rgba(78, 26, 189, 0.60) 0%, rgba(17, 1, 200, 0.00) 100%);
+    backdrop-filter: blur(16.432161331176758px);
+    outline: none;
+    border: none;
+    font-size: 1.311vw;
+    color: #fff;
+    font-family: Montserrat;
+    padding: 6px;
+}
+
+.dice3 {
+    background: radial-gradient(364.51% 127.51% at 21.29% 20.41%, rgba(78, 26, 189, 0.60) 0%, rgba(17, 1, 200, 0.00) 100%);
+    backdrop-filter: blur(16.432161331176758px);
+    width: 30%;
+    padding: 12px;
+    height: 5vh;
+    border-radius: 21.91px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vw;
+    align-self: center;
+    /* width: 20%; */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Montserrat;
+    color: #fff;
+}
+
+.content {
+    align-self: center;
+    width: 20%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Montserrat;
+    color: #fff;
+}

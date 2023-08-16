@@ -34,6 +34,7 @@ app.use(express.urlencoded({ extended: false }))
 app.set("view-engine", "ejs")
 app.set('views', 'views')
 app.use(cookieParser())
+app.use(express.json())
 app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -140,36 +141,26 @@ app.get('/cancel', checkAuthenticated, (req, res) => {
     res.render('cancel.ejs', {amount: 0})
 });
 
+app.get('/arena', (req, res) => {
+    res.render('arena.ejs')
+})
+
 const DOMAIN = 'http://localhost:3000';
 
 app.post('/create-checkout-session', checkAuthenticated, async (req, res) => {
-    var elements = stripe.elements({
-        clientSecret: 'sk_test_51Ndu0lSEAo4msgGAQHyHvaqFFjBdMStrs8YUkxNSEvFoKtcEaHRR1KDPMLJTfi6wGoh6WrhUuPQNu5ieAqmbFFDv006B7JHZEh',
-      });
-
-      var elements = stripe.elements({
-        mode: 'payment',
-        currency: 'inr',
-        amount: 6969696969,
-      });
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price: 'price_1Nee1sSEAo4msgGAF0PmErpK',
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    success_url: `${DOMAIN}/success`,
-    cancel_url: `${DOMAIN}/cancel`,
-  });
-
-  res.redirect(303, session.url);
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: parseInt(req.body.coins + "00"),
+        currency: "inr",
+        automatic_payment_methods: {
+            enabled: true
+        }
+    })
+    
 });
 
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
-    res.render('register.ejs', {amount: 0})
+    res.render('register.ejs', {amount: null})
 });
 
 app.post('/logout', (req, res) => {
@@ -204,9 +195,9 @@ app.post('/register', async (req, res) => {
         
         await newUser.save();
         console.log(newUser);
-        res.redirect('/login', {amount: 0});
+        res.redirect('/login');
     } catch (error) {
-        res.redirect('/register', {amount: 0});
+        res.redirect('/register');
     }
 });
 
@@ -224,15 +215,59 @@ app.get('/meme', checkAuthenticated, async (req, res) => {
     }
 });
 
-app.get('/elon', (req,res) => {
-    res.render('choseMusk.ejs', {amount: 0})
+app.get('/elon', checkAuthenticated, async(req,res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('choseMusk.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('choseMusk.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
 })
-app.get('/zuck', (req,res) => {
-    res.render('choseZuck.ejs', {amount: 0})
+app.get('/zuck', checkAuthenticated, async (req,res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('choseZuck.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('choseZuck.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
 })
 
-app.get('/bet', (req, res) => {
-    res.render('bet.ejs', {amount: 0})
+app.get('/bet', checkAuthenticated, async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('bet.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('bet.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
+})
+
+app.get('/spin-the-wheel', checkAuthenticated, async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('spinTheWheel.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('spinTheWheel.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
 })
 
 function checkAuthenticated(req, res, next) {
@@ -265,6 +300,10 @@ function loginUser(req, res, next) {
         }
     })(req, res, next);
 }
+
+app.get('/arena', (req, res) => {
+    res.render("arena.ejs")
+})
 
 app.listen(3000, function(){
    console.log('Server started at port 3000');

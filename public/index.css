@@ -134,4 +134,21 @@ body {
     border-radius: 21.91px;
     background: radial-gradient(103.57% 91.88% at 71.80% 38.53%, rgba(78, 26, 189, 0.60) 0%, rgba(17, 1, 200, 0.00) 100%);
     backdrop-filter: blur(16.432161331176758px);
+    display: flex;
+}
+
+.card h1 {
+    font-size: 1.616vw;
+    margin-left: 1vw;
+    color: #fff;
+    font-family: Montserrat;
+}
+
+.card img {
+    /* aspect-ratio: 1; */
+    width: 60%;
+    height: 80%;
+    align-self: flex-end;
+    margin-right: 1vw;
+    margin-bottom: 1vw;
 }

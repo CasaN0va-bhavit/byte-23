@@ -4,32 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roll The Dice!</title>
+    <link rel="stylesheet" href="roll.css">
     <style>
-        .container {
-            display: flex;
-        }
-        .dice1, .dice2 {
+        /* .dice1, .dice2 {
             padding: 20px;
             font-size: 1.5em;
             margin-right: 20px;
             background: #eee
-        }
+        } */
     </style>
 </head>
 <body>
-    <form action="/roll-the-dice" method="post">
-        <input type="number" name="amount" placeholder="Place your bet:" required>
-        <input type="submit" value="Roll The Dice!">
-    </form>
-    <p><%- amount %></p>
+    <%- include('./partials/navbar') %>
     <div class="container">
-        <div class="dice1">
-            <%- dice1 %>
-        </div>
-        <div class="dice2">
-            <%- dice2 %>
+        <h1 class="title">Place your bet:</h1>
+        <div class="roll">
+            <form action="/roll-the-dice" method="post">
+                <input class="inputs" type="number" name="amount" placeholder="Place your bet:" required>
+                <input type="submit" value="Roll The Dice!">
+            </form>
+            <div class="content">
+                <p>Total:</p>
+                <div class="dice3">
+                    <p><%- amount %></p>
+                </div>
+            </div>
+            <div class="container2">
+                <div class="content">
+                    <p class="text">You got:</p>
+                    <div class="dice1">
+                        <%- dice1 %>
+                    </div>
+                </div>
+                <div class="content">
+                    <p class="text">You got:</p>    
+                    <div class="dice2">
+                        <%- dice2 %>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
     
 </body>
 </html>
