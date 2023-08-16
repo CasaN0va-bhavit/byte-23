@@ -196,8 +196,9 @@ app.post('/register', async (req, res) => {
             password: hashedPassword,
             amount: 0
         });
-
+        
         await newUser.save();
+        console.log(newUser);
         res.redirect('/login', {amount: 0});
     } catch (error) {
         res.redirect('/register', {amount: 0});
