@@ -8,3 +8,14 @@ body {
     padding: 0;
 }
 
+.content {
+    height:auto;
+    width: auto;
+}
+
+.title {
+    font-size: 4em;
+    font-family: Mortend;
+    color: #fff;
+    margin-left: 5vw;
+}
