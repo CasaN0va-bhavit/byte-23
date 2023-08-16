@@ -14,35 +14,76 @@ body {
 }
 
 .names {
+    position: absolute;
+    top: 50%;
     display: flex;
     flex-direction: row;
     width: 80%;
     justify-content: space-between;
+    justify-items: center;
     align-self: center;
+    align-items: center;
 }
 
 .elon {
+    position: absolute;
+    top: 40%;
+    align-self: start;
+    margin-left: 5%;
+}
+.mark {
+    position: absolute;
+    top: 40%;
+    align-self: end;
+    margin-right: 5%;
+}
+
+.elon-title {
     color: #4BB4FF;
     font-family: Mortend;
-    font-size: 1.667vw;
-    width: 150px;
+    font-size: 1.1em;
+    /* width: 150px; */
     font-style: normal;
-    font-weight: 400;
+    font-weight: 100;
     line-height: normal;
 }
 
-.mark {
-    text-align: end;
-    width: 320px;
+.mark-title {
     color: #FF4773;
     font-family: Mortend;
-    font-size: 1.667vw;
+    font-size: 1.1em;
+    /* width: 150px; */
     font-style: normal;
-    font-weight: 400;
+    font-weight: 100;
     line-height: normal;
 }
 
+.elon img {
+    width: 140px;
+    /* height: 30px; */
+}
+.mark img {
+    margin-left: ;
+    width: 160px;
+    /* height: 60px; */
+}
+
+/* .mark {
+    position: absolute;
+    top: 40%;
+    align-self: end;
+    text-align: start;
+    width: 239px;
+    color: #FF4773;
+    font-family: Mortend;
+    font-size: 1.1em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+} */
+
 .titles {
+    width: 100%;
     align-self: center;
     color: #fff;
     display: flex;
