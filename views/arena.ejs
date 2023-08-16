@@ -4,23 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arena</title>
-    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
-    
-    <script type="importmap">
-    {
-        "imports": {
-        "three": "https://unpkg.com/three@<version>/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@<version>/examples/jsm/"
-        }
-    }
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js" integrity="sha512-auFmPm+de880vk/c+bgBmuOnQ7BM28z7zPWmepVgX8737t75OHZjElOnQqERwP8cE4DIyCJ+gb1kE0b/eLWcnA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three-gltf-loader@1.111.0/index.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="arena.js" defer type="module"></script>
+    <link rel="stylesheet" href="arena.css">
 </head>
 <body>
-    
-    <canvas class="webgl canvas"></canvas>
+    <%- include('./partials/navbar') %>
+   <div class="content">
+    <h1 class="title">Arena</h1>
+   </div> 
 </body>
 </html>

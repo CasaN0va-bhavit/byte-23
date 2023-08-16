@@ -1,0 +1,10 @@
+@import url('https://db.onlinewebfonts.com/c/6182518f7bc0b240b3a35699686e85d5?family=Mortend');
+body {
+    background: #0A0913;
+    background-image: url('https://cdn.discordapp.com/attachments/1139581573855969360/1140946342550700032/image.png');
+    background-size: cover;
+    z-index: inherit;
+    margin: 0;
+    padding: 0;
+}
+

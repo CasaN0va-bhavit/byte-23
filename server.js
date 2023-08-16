@@ -168,35 +168,22 @@ app.get('/arena', (req, res) => {
 
 const DOMAIN = 'http://localhost:3000';
 
-app.post('/payNowConfig', checkAuthenticated, async (req, res) => {
-    if (req.body.stripeSuperSecretMsg === 'yes') {
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount: parseInt(req.body.coins + "00"),
-            currency: "inr",
-            automatic_payment_methods: {
-                enabled: true
-            }
-        })
-        res.send({
-            clientSecret: paymentIntent.client_secret
-        })
-    } else {
-        res.redirect('/')
-    }  
-});
-app.post('/stripeConfig', checkAuthenticated, (req, res) => {
-    if (req.body.stripeSuperSecretMsg === 'yes') {
-        res.send({
-            publishableKey: "pk_test_51Ndu0lSEAo4msgGASUJsJVUQ8UujVQNECIAxjqMEuoPsgs53MpcLMFHsWm2oPtklpcs3FjwTtIXeNrmv9Px3KPQK00Qtvp6J0U"
-        })
-    } else {
-        res.send(req.body)
-    }
-})
-//v v remove this later v v
-app.get('/pay', checkAuthenticated, (req, res) => {
-    res.render('payNow.ejs')
-})
+
+app.post('/create-checkout-session', async (req, res) => {
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          price: 'price_1Ne8PTSEAo4msgGAv1bXyu31',
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: `${DOMAIN}/success.html`,
+      cancel_url: `${DOMAIN}/cancel.html`,
+    });
+  
+    res.redirect(303, session.url);
+  });
 
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
@@ -296,6 +283,20 @@ app.get('/bet', checkAuthenticated, async (req, res) => {
     }
 })
 
+app.get('/arena', checkAuthenticated, async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('arena.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('arena.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
+});
+
 app.get('/spin-the-wheel', checkAuthenticated, async (req, res) => {
     try {
         const requiredUser = await User.findOne({name: req.user.name})
@@ -341,9 +342,6 @@ function loginUser(req, res, next) {
     })(req, res, next);
 }
 
-app.get('/arena', (req, res) => {
-    res.render("arena.ejs")
-})
 
 app.listen(3000, function(){
    console.log('Server started at port 3000');
