@@ -21,7 +21,7 @@
         <div class="roll">
             <form action="/roll-the-dice" method="post">
                 <input class="inputs" type="number" name="amount" placeholder="Place your bet:" required>
-                <input type="submit" value="Roll The Dice!">
+                <input class="submit-button" type="submit" value="Roll The Dice!">
             </form>
             <div class="content">
                 <p>Total:</p>
@@ -33,19 +33,51 @@
                 <div class="content">
                     <p class="text">You got:</p>
                     <div class="dice1">
-                        <%- dice1 %>
+                        <img id="<%- dice1 %>" class="img1" src="" alt="">
                     </div>
                 </div>
                 <div class="content">
                     <p class="text">You got:</p>    
                     <div class="dice2">
-                        <%- dice2 %>
+                        <img id="<%- dice2 %>" class="img2" src="" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    
+    <script>
+        const image1 = document.getElementsByClassName("img1")[0];
+        const image2 = document.getElementsByClassName("img2")[0];
+
+        switch (image1.id) {
+            case 1:
+                image1.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
+                break;
+        
+            case 2:
+                image1.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
+                break;
+        
+            case 3:
+                image1.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
+                break;
+        
+            case 4:
+                image1.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
+                break;
+        
+            case 5:
+                image1.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
+                break;
+        
+            case 6:
+                image1.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
+                break;
+        
+            default:
+                break;
+        }
+    </script>
 </body>
 </html>

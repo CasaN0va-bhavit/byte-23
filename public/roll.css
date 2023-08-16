@@ -10,8 +10,11 @@ body {
 
 
 .container {
+    height: 86vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .title {
@@ -21,6 +24,7 @@ body {
 }
 
 .roll {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,7 +66,26 @@ form {
     font-size: 1.311vw;
     color: #fff;
     font-family: Montserrat;
-    padding: 6px;
+    padding: 12px;
+}
+
+.inputs::placeholder {
+    margin-left: 1.5vw;
+}
+
+.submit-button {
+    width: 20.354vw;
+    height: 5.152vw;
+    flex-shrink: 0;
+    border-radius: 21.91px;
+    background: #4E1ABD;
+    backdrop-filter: blur(16.432161331176758px);
+    border: none;
+    outline: none;
+    font-size: 1.212vw;
+    font-family: Mortend;
+    color: #fff;
+    margin-top: 2vw;
 }
 
 .dice3 {
