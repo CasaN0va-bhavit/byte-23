@@ -210,7 +210,13 @@ app.get('/pot', checkAuthenticated, async (req, res) => {
         if (!requiredUser) {
             return res.render('pot.ejs', {name: req.user.name, amount: 0})
         } else {
-            return res.render('pot.ejs', {name: req.user.name, amount: requiredUser.amount, bet: 0})
+            if (requiredUser.betFor === 'musk') {
+                return res.render('pot.ejs', {name: req.user.name, betZuck: requiredUser.bet, betMusk: null})
+            } else if (requiredUser.betFor === 'zuck') {
+                return res.render('pot.ejs', {name: req.user.name, betMusk: requiredUser.bet, betZuck: null})
+            } else {
+                return res.render('pot.ejs', {name: req.user.name, bet: null, betFor: null})
+            }
         }
     } catch(err) {
         console.log(err)
@@ -287,6 +293,28 @@ app.get('/elon', checkAuthenticated, async(req,res) => {
         res.send("Error")
     }
 })
+
+app.post('/elon', checkAuthenticated, async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('choseMusk.ejs', {name: req.user.name, amount: 0})
+        } else {
+            await User.updateOne({
+                email: req.cookies["username"]}, 
+                {$set: 
+                    {
+                        betFor: 'musk', 
+                        bet: req.body.coins
+                    }
+                })
+            return res.send("L")
+            
+        }
+    } catch (error) {
+        res.send('Error')
+    }
+})
 app.get('/zuck', checkAuthenticated, async (req,res) => {
     try {
         const requiredUser = await User.findOne({name: req.user.name})
@@ -298,6 +326,28 @@ app.get('/zuck', checkAuthenticated, async (req,res) => {
     } catch(err) {
         console.log(err)
         res.send("Error")
+    }
+})
+
+app.post('/zuck', checkAuthenticated, async(req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('choseZuck.ejs', {name: req.user.name, amount: 0})
+        } else {
+            await User.updateOne({
+                email: req.cookies["username"]}, 
+                {$set: 
+                    {
+                        betFor: 'zuck', 
+                        bet: req.body.coins
+                    }
+                })
+            return res.send("L")
+            
+        }
+    } catch (error) {
+        res.send('Error')
     }
 })
 
