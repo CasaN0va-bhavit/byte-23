@@ -63,7 +63,7 @@ app.get('/', checkAuthenticated, async (req, res) => {
 });
 
 app.get('/login', checkNotAuthenticated, async (req, res) => {
-    res.render('login.ejs')
+    res.render('login.ejs', {amount: null})
 });
 
 app.post('/login', checkNotAuthenticated, (req, res, next) => {
