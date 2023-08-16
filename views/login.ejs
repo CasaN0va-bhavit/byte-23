@@ -4,23 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <h1>Login</h1>
-<% if (messages.error) { %>
-    <%= messages.error %>
-<% } %>
-<form action="/login" method="POST">
-    <div>
-        <label for="name">Email</label>
-        <input type="text" id="email" name="email" required>
+    <div class="container">
+        <div class="text">
+            <h1>We believe in your game</h1>
+        </div>
+        <div class="form">
+            <div class="content">
+            <h1>Login</h1>
+            <form action="/login" method="post">
+                    <input class="user" type="text" name="email" placeholder="Username">
+                    <input class="password" type="password" name="password" placeholder="Password">
+                    <button class="submit" type="submit">Next</button>
+                </form>
+            <p class="no-account">Don't have an account?<a href="/register">Signup</a></p>
+            </div>
+        </div>
     </div>
-    <div>
-        <label for="name">Password</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <button type="submit">Login</button>
-</form>
-<a href="/register">Register</a>
 </body>
 </html>
+<!-- <%- include('./partials/navbar') %>
+<h1>Login</h1>
+<% if (messages.error) { %>
+<%= messages.error %>
+<% } %>
+<form action="/login" method="POST" class="reg-container">
+<div>
+    <label for="name">Email</label>
+    <input type="text" id="email" name="email" required>
+</div>
+<div>
+    <label for="name">Password</label>
+    <input type="password" id="password" name="password" required>
+</div>
+<button type="submit">Login</button>
+</form>
+<a href="/register">Register</a> -->

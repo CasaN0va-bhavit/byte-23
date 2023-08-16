@@ -1,0 +1,133 @@
+@import url('https://db.onlinewebfonts.com/c/6182518f7bc0b240b3a35699686e85d5?family=Mortend');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+body {
+    background: #0A0913;
+    /* background-image: url('https://cdn.discordapp.com/attachments/1139581573855969360/1140859026905763950/image.png'); */
+    /* background-size: cover; */
+    z-index: inherit;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    /* background-color: red; */
+    height: 100vh;
+    display: flex;
+
+    /* flex-grow: 1; */
+}
+
+
+.text {
+    width: 50%;
+    flex-grow: 1;
+    background: radial-gradient(162.69% 74.19% at 40.51% 37.63%, rgba(78, 26, 189, 0.60) 11.73%, rgba(17, 1, 200, 0.00) 100%);
+    backdrop-filter: blur(16.432161331176758px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text h1 {
+    width: 50%;
+    font-size: 4.040vw;
+    margin-left: 4vw;
+    font-family: 'Mortend';
+    line-height: 125%;
+}
+
+.form {
+    flex-grow: 1;
+    width: 50%;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.form h1 {
+    font-family: 'Mortend';
+    font-size: 3.232vw;
+    /* margin-left: 3.5vw; */
+    margin-top: 3vw;
+    justify-content: center;
+}
+
+.form form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 3vw; */
+}
+
+
+.form .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* justify-content: center; */
+    align-items: center;
+    /* margin-top: 3vw; */
+    align-self: center;
+    /* justify-content: center; */
+}
+
+.form form input {
+    width: 80%;
+    padding: 1.515vw 1.263vw;
+    font-size: 1.616vw;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    outline: none;
+    color: #fff;
+    background-color: #0A0913;
+    border-radius: 5px;
+    font-family: Montserrat;
+}
+
+.user {
+    margin-bottom: 2vw;
+}
+
+.password {
+    margin-bottom: 3.5vw;
+}
+
+.submit {
+    font-size: 2em;
+    width: auto;
+    height: auto;
+    padding: 2vw;
+    outline: none;
+    border: none;
+    font-family: Mortend;
+    color: #fff;
+    font-style: normal;
+    line-height: normal;
+    border-radius: 21.91px;
+    background: #4E1ABD;
+    backdrop-filter: blur(16.432161331176758px);
+}
+
+.no-account {
+    font-size: 1.616vw;
+    font-family: Montserrat;
+}
+
+.no-account a {
+    color: #fff;
+}
+
+.form form input::placeholder {
+
+}

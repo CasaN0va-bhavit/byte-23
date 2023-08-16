@@ -5,10 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="index.css">
+    <style>
+        @import url('https://db.onlinewebfonts.com/c/6182518f7bc0b240b3a35699686e85d5?family=Mortend');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            width: 100%;
+            height: 13.89vh;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            /* background: red; */
+        }
+        nav .nav-content {
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            justify-content: center;
+            padding: 15.625vw;
+        }
+
+        .nav-links {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-links li {
+            list-style-type: none;
+            color: #FFF;
+            font-family: Mortend;
+            font-size: 1vw;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            cursor: pointer;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #FFF;
+        }
+        
+        .nav-links li:hover {
+            text-decoration-line: underline;
+        }
+        .coins {
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            /* justify-content: center; */
+            border-radius: 21.91px;
+            background: radial-gradient(364.51% 127.51% at 21.29% 20.41%, rgba(78, 26, 189, 0.60) 0%, rgba(17, 1, 200, 0.00) 100%);
+            backdrop-filter: blur(16.432161331176758px);
+            width: 13.283vw;
+            height: 2.475vw;
+            flex-shrink: 0;
+        }
+        .coins p {
+            display: inline-block;
+            margin: 0;
+            align-self: center;
+            margin-left: 1vw;
+            justify-self: left;
+            font-size: 1.5em;
+            margin-top: 5px;
+            /* text-align: center; */
+            flex-grow: 1;
+        }
+        .coins img {
+            transform: scale(1.5);
+            justify-self: right;
+            aspect-ratio: 1;
+            width: 3vw;
+        }
+        .logout {
+            border: 2px solid #808080;
+            border-radius: 5px;
+            padding: 12px;
+            color: #fff;
+            font-family: Mortend;
+            background: transparent;
+            cursor: pointer;
+        }
+    </style>
     <link href="https://db.onlinewebfonts.com/c/b6d3c75722af4490900128147524d7d4?family=Facon" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-    <%- include('./partials/navbar') %>
+    <nav>
+        <div class="nav-content">
+            <ul class="nav-links">
+                <li><A href="/">Home</A></li>
+                <li><A href="#">Arena</A></li>
+                <li><A href="#">Stream</A></li>
+                <li><A href="#">Community</A></li>
+                <li><A href="/bet">Bet</A></li>
+                <li><A href="/meme">Meme</A></li>
+                <li><div class="coins"><p><%- amount %></p><img src="https://cdn.discordapp.com/attachments/1080157954570993664/1140986490441179236/image.png" alt=""></div></li>
+                <li><form action="/logout" method="post"><button class="logout">Logout</button></form></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="home-content">
         <div class="titles">
             <h1 class="title">Bet. Win. Thrive.</h1>
