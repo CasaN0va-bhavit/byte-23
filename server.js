@@ -164,7 +164,7 @@ app.post('/create-checkout-session', checkAuthenticated, async (req, res) => {
 
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
-    res.render('register.ejs', {amount: 0})
+    res.render('register.ejs', {amount: null})
 });
 
 app.post('/logout', (req, res) => {
@@ -199,9 +199,9 @@ app.post('/register', async (req, res) => {
         
         await newUser.save();
         console.log(newUser);
-        res.redirect('/login', {amount: 0});
+        res.redirect('/login');
     } catch (error) {
-        res.redirect('/register', {amount: 0});
+        res.redirect('/register');
     }
 });
 
