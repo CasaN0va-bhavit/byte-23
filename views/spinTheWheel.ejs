@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spin the Wheel!</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
         body {
             background: #0A0913;
             background-image: url('https://cdn.discordapp.com/attachments/1080157954570993664/1140927778020134932/image.png');
             background-size: cover;
             background-repeat: no-repeat;
+            overflow: hidden;
         }
 
         .container {
@@ -27,11 +29,16 @@
             align-items: center;
         }
 
-        .wheel {
-            height: 75vh;
-            width: 75vh;
-            background-color: red;
-            border-radius: 60vh;
+        #wheel {
+            transition: 3s;
+            transform-origin: center center;
+        }
+
+        .arrowImg {
+            transform: translateX(-50%);
+            position: absolute;
+            left: 50%;
+            height: 10vh;
         }
     </style>
 </head>
@@ -40,9 +47,51 @@
         <%- include('./partials/navbar.ejs') %>
         <div class="wheelContainer">
             <div class="wheel">
-
+                <div style="
+                    height: 84vh; 
+                    width: 84vh; 
+                    background: rgba(0, 0, 0, 0.7); 
+                    display: flex; 
+                    align-items: center; 
+                    justify-content: center;
+                    flex-direction: column;
+                    color: white;
+                    font-size: 1.1em;
+                    font-family: 'Montserrat'">
+                    <div style="position: relative;">
+                        <img id='wheel' src="wheel.png" style="height:60vh;width:auto;cursor:pointer;">
+                        <img src="arrow.png" class="arrowImg">
+                    </div>
+                    <br style="clear: both">
+                    <p>Click On The Wheel To Spin!</p>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        var wheelSpun = false;
+        const wheelImg = document.getElementById('wheel');
+        wheelImg.addEventListener('click', (e) => {
+            if (wheelSpun === false) {
+                const randomRotation = Math.floor(Math.random() * 359);
+                const finalRotation = 720 + randomRotation;
+                wheelImg.style.transform = 'rotate(' + finalRotation + 'deg)';
+                wheelImg.style.transformOrigin = (wheelImg.width/2) + " " + (wheelImg.height/2);
+                if (randomRotation <= 90) {
+                    console.log("-50")
+                } else if (randomRotation <= 180) {
+                    console.log('60!')
+                } else if (randomRotation <= 270) {
+                    console.log('-20!')
+                } else {
+                    console.log('0!')
+                }
+                setTimeout(() => {
+                    wheelSpun = true;
+                }, 3000);
+            }
+            
+        })
+    </script>
 </body>
 </html>

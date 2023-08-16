@@ -143,16 +143,35 @@ app.get('/cancel', checkAuthenticated, (req, res) => {
 
 const DOMAIN = 'http://localhost:3000';
 
-app.post('/create-checkout-session', checkAuthenticated, async (req, res) => {
-    const paymentIntent = await stripe.paymentIntents.create({
-        amount: parseInt(req.body.coins + "00"),
-        currency: "inr",
-        automatic_payment_methods: {
-            enabled: true
-        }
-    })
-    
+app.post('/payNowConfig', checkAuthenticated, async (req, res) => {
+    if (req.body.stripeSuperSecretMsg === 'yes') {
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: parseInt(req.body.coins + "00"),
+            currency: "inr",
+            automatic_payment_methods: {
+                enabled: true
+            }
+        })
+        res.send({
+            clientSecret: paymentIntent.client_secret
+        })
+    } else {
+        res.redirect('/')
+    }  
 });
+app.post('/stripeConfig', checkAuthenticated, (req, res) => {
+    if (req.body.stripeSuperSecretMsg === 'yes') {
+        res.send({
+            publishableKey: process.env.STRIPE_PUBLISHABLE_KEY
+        })
+    } else {
+        res.send(req.body)
+    }
+})
+//v v remove this later v v
+app.get('/pay', checkAuthenticated, (req, res) => {
+    res.render('payNow.ejs')
+})
 
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
