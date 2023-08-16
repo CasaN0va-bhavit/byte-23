@@ -141,6 +141,10 @@ app.get('/cancel', checkAuthenticated, (req, res) => {
     res.render('cancel.ejs', {amount: 0})
 });
 
+app.get('/arena', (req, res) => {
+    res.render('arena.ejs')
+})
+
 const DOMAIN = 'http://localhost:3000';
 
 app.post('/payNowConfig', checkAuthenticated, async (req, res) => {
@@ -315,6 +319,10 @@ function loginUser(req, res, next) {
         }
     })(req, res, next);
 }
+
+app.get('/arena', (req, res) => {
+    res.render("arena.ejs")
+})
 
 app.listen(3000, function(){
    console.log('Server started at port 3000');

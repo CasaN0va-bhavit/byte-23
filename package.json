@@ -19,10 +19,12 @@
     "mongoose": "^7.4.2",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "stripe": "^12.18.0"
+    "stripe": "^12.18.0",
+    "three": "^0.155.0"
   },
   "devDependencies": {
     "dotenv": "^16.3.1",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "vite": "^4.4.9"
   }
 }
