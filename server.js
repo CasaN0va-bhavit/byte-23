@@ -62,16 +62,26 @@ app.get('/', checkAuthenticated, async (req, res) => {
     }
 });
 
-app.get('/login', checkNotAuthenticated, (req, res) => {
-    res.render('login.ejs', {amount: 0})
+app.get('/login', checkNotAuthenticated, async (req, res) => {
+    res.render('login.ejs')
 });
 
 app.post('/login', checkNotAuthenticated, (req, res, next) => {
     loginUser(req, res, next)
 });
 
-app.get('/random', (req, res) => {
-    res.render('random.ejs', {amount: 0})
+app.get('/random', async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('random.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('random.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
 })
 
 // Take the money
@@ -89,9 +99,9 @@ app.post('/random', async (req, res) => {
 
 app.get('/roll-the-dice', (req, res) => {
     res.render('roll-the-dice.ejs', {
-        amount: null,
-        dice1: null,
-        dice2: null
+        amount: 0,
+        dice1: 0,
+        dice2: 0
     })
 })
 
@@ -165,10 +175,21 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 app.post('/logout', (req, res) => {
     req.logout((err) => {
         if (err) {
-            // smth
+            
         }
     })
-    res.redirect('/login', {amount: 0});
+    res.clearCookie('username')
+    res.redirect('/login');
+});
+
+app.get('/logout', (req, res) => {
+    req.logout((err) => {
+        if (err) {
+            res.clearCookie('username')
+        }
+    })
+    res.clearCookie('username')
+    res.redirect('/login');
 });
 
 app.post('/register', async (req, res) => {
@@ -188,8 +209,18 @@ app.post('/register', async (req, res) => {
     }
 });
 
-app.get('/meme', checkAuthenticated, (req, res) => {
-    res.render('meme.ejs')
+app.get('/meme', checkAuthenticated, async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('meme.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('meme.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
 });
 
 app.get('/elon', (req,res) => {
