@@ -33,13 +33,13 @@
                 <div class="content">
                     <p class="text">You got:</p>
                     <div class="dice1">
-                        <img id="<%- dice1 %>" class="img1" src="" alt="">
+                        <img id="<%- dice1 %>" class="img1" src="" alt="" style="height: 40px">
                     </div>
                 </div>
                 <div class="content">
                     <p class="text">You got:</p>    
                     <div class="dice2">
-                        <img id="<%- dice2 %>" class="img2" src="" alt="">
+                        <img id="<%- dice2 %>" class="img2" src="" alt="" style="height:40px;">
                     </div>
                 </div>
             </div>
@@ -51,28 +51,57 @@
         const image2 = document.getElementsByClassName("img2")[0];
 
         switch (image1.id) {
-            case 1:
+            case '1':
                 image1.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
                 break;
         
-            case 2:
+            case '2':
                 image1.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
                 break;
         
-            case 3:
+            case '3':
                 image1.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
                 break;
         
-            case 4:
+            case '4':
                 image1.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
                 break;
         
-            case 5:
+            case '5':
                 image1.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
                 break;
         
-            case 6:
+            case '6':
                 image1.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
+                break;
+        
+            default:
+                break;
+        }
+
+        switch (image2.id) {
+            case '1':
+                image2.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
+                break;
+        
+            case '2':
+                image2.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
+                break;
+        
+            case '3':
+                image2.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
+                break;
+        
+            case '4':
+                image2.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
+                break;
+        
+            case '5':
+                image2.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
+                break;
+        
+            case '6':
+                image2.src = "https://cdn.discordapp.com/attachments/1080157954570993664/1141384214193905684/image.png"
                 break;
         
             default:

@@ -98,7 +98,18 @@ app.post('/random', async (req, res) => {
     res.render('success.ejs', {amount: 0})
 })
 
-app.get('/roll-the-dice', (req, res) => {
+app.get('/roll-the-dice', checkAuthenticated, async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('meme.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('meme.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
     res.render('roll-the-dice.ejs', {
         amount: 0,
         dice1: 0,
