@@ -32,12 +32,12 @@ const userSchema = new mongoose.Schema({
     },
     bet: {
         type: Number,
-        required: true,
+        required: false,
         default: 0
     },
     betFor: {
         type: String,
-        required: true,
+        required: false,
         default: null
     }
 })

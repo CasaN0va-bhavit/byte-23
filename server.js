@@ -2,10 +2,7 @@
 // Betting
 // Quiz
 
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config()
-}
-
+require('dotenv').config()
 const express = require('express');
 const bcrypt = require("bcrypt")
 const passport = require('passport');
@@ -262,6 +259,7 @@ app.post('/register', async (req, res) => {
         console.log(newUser);
         res.redirect('/login');
     } catch (error) {
+        console.log(error);
         res.redirect('/register');
     }
 });
@@ -425,7 +423,8 @@ function loginUser(req, res, next) {
     })(req, res, next);
 }
 
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000, function(){
+app.listen(PORT, function(){
    console.log('Server started at port 3000');
 });
