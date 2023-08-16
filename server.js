@@ -204,6 +204,20 @@ app.get('/success', checkAuthenticated, async (req, res) => {
     }
 });
 
+app.get('/pot', checkAuthenticated, async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('pot.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('pot.ejs', {name: req.user.name, amount: requiredUser.amount, bet: 0})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
+})
+
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs', {amount: null})
 });

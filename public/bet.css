@@ -89,4 +89,13 @@ body {
     background: radial-gradient(162.69% 74.19% at 40.51% 37.63%, rgba(78, 26, 189, 0.60) 11.73%, rgba(17, 1, 200, 0.00) 100%);
     backdrop-filter: blur(16.432161331176758px);
     height: 23.485vw !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text p {
+    font-size: 1.616vw;
+    text-align: center;
+    padding: 0;
 }

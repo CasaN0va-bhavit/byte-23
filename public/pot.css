@@ -1,0 +1,68 @@
+@import url('https://db.onlinewebfonts.com/c/6182518f7bc0b240b3a35699686e85d5?family=Mortend');
+body {
+    background: #0A0913;
+    background-image: url('https://cdn.discordapp.com/attachments/1139581573855969360/1140859026905763950/image.png');
+    background-size: cover;
+    z-index: inherit;
+}
+
+.content {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.upper {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.container {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.upper .doosra {
+    align-self: flex-start !important;
+    text-align: start;
+}
+
+.title {
+    color: #fff;
+    font-family: Mortend;
+    font-size: 2.5em;
+}
+
+.secondary-title {
+    font-size: 2em;
+    color: #fff;
+    font-family: Mortend;
+}
+
+.card {
+    border-radius: 21.91px;
+    background: rgba(39, 34, 90, 0.60);
+    backdrop-filter: blur(16.432161331176758px);
+    width: 31.094vw;
+    height: 35.092vh;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
