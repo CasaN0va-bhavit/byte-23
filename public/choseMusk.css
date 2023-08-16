@@ -201,6 +201,25 @@ body {
     outline: none;
     margin-top: 10vh;
 }
+.containerDoosra button {
+    width: 100%;
+    height: 5.152vw;
+    flex-shrink: 0;
+    border-radius: 21.91px;
+    background: #FFF;
+    backdrop-filter: blur(16.432161331176758px);
+    color: #4E1ABD;
+    text-align: center;
+    font-family: Mortend;
+    font-size: 1.3em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: none;
+    outline: none;
+    margin-top: 10vh;
+    align-self: center;
+}
 
 .containerDoosra {
     flex-grow: 1;
@@ -223,20 +242,5 @@ body {
     .containerDoosra {
         height: 80%;
     }
-}
-
-.containerDoosra form {
-    padding-top: 3.232vw;
-    margin-top: 5vw;
-    /* flex-grow: 1; */
-    width: 100%;
-    height: 60%;
-    flex-shrink: 0;
-    border-radius: 21.91px;
-    background: radial-gradient(162.69% 74.19% at 40.51% 37.63%, rgba(78, 26, 189, 0.60) 11.73%, rgba(17, 1, 200, 0.00) 100%);
-    backdrop-filter: blur(16.432161331176758px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 

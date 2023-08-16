@@ -153,19 +153,6 @@ app.post('/roll-the-dice', async (req, res) => {
         res.send("Error")
     }
 })
-
-app.get('/success', (req, res) => {
-    res.render('success.ejs', {amount: 0})
-});
-
-app.get('/cancel', checkAuthenticated, (req, res) => {
-    res.render('cancel.ejs', {amount: 0})
-});
-
-app.get('/arena', (req, res) => {
-    res.render('arena.ejs')
-})
-
 const DOMAIN = 'http://localhost:3000';
 
 
@@ -178,13 +165,44 @@ app.post('/create-checkout-session', async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: `${DOMAIN}/success.html`,
-      cancel_url: `${DOMAIN}/cancel.html`,
+      success_url: `${DOMAIN}/success`,
+      cancel_url: `${DOMAIN}/cancel`,
     });
-  
+    
     res.redirect(303, session.url);
   });
 
+
+app.get('/cancel', checkAuthenticated, async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('cancel.ejs', {name: req.user.name, amount: 0})
+        } else {
+            return res.render('cancel.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
+});
+
+app.get('/success', checkAuthenticated, async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('success.ejs', {name: req.user.name, amount: 0})
+        } else {
+            // const oldAmount = requiredUser.amount;
+            // const newAmount = oldAmount + 50;
+            // await User.updateOne({name: req.user.name}, {$set: {amount: newAmount}})
+            return res.render('success.ejs', {name: req.user.name, amount: requiredUser.amount})
+        }
+    } catch(err) {
+        console.log(err)
+        res.send("Error")
+    }
+});
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs', {amount: null})
@@ -289,6 +307,7 @@ app.get('/arena', checkAuthenticated, async (req, res) => {
         if (!requiredUser) {
             return res.render('arena.ejs', {name: req.user.name, amount: 0})
         } else {
+            console.log(requiredUser)
             return res.render('arena.ejs', {name: req.user.name, amount: requiredUser.amount})
         }
     } catch(err) {

@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { NoToneMapping } = require('three');
 
 // HQzl4mcwodpeXin7
 
@@ -28,6 +29,16 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true,
         default: 0
+    },
+    bet: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    betFor: {
+        type: String,
+        required: true,
+        default: null
     }
 })
 
