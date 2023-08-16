@@ -253,6 +253,7 @@ app.post('/register', async (req, res) => {
         console.log(newUser);
         res.redirect('/login');
     } catch (error) {
+        console.log(error);
         res.redirect('/register');
     }
 });
