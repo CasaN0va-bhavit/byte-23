@@ -102,9 +102,9 @@ app.get('/roll-the-dice', checkAuthenticated, async (req, res) => {
     try {
         const requiredUser = await User.findOne({name: req.user.name})
         if (!requiredUser) {
-            return res.render('meme.ejs', {name: req.user.name, amount: 0})
+            return res.render('roll-the-dice.ejs', {name: req.user.name, amount: 0})
         } else {
-            return res.render('meme.ejs', {name: req.user.name, amount: requiredUser.amount})
+            return res.render('roll-the-dice.ejs', {name: req.user.name, amount: requiredUser.amount})
         }
     } catch(err) {
         console.log(err)
