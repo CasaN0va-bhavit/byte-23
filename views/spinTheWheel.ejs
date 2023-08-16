@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin the Wheel!</title>
+    <style>
+        body {
+            background: #0A0913;
+            background-image: url('https://cdn.discordapp.com/attachments/1080157954570993664/1140927778020134932/image.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .wheelContainer {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wheel {
+            height: 75vh;
+            width: 75vh;
+            background-color: red;
+            border-radius: 60vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <%- include('./partials/navbar.ejs') %>
+        <div class="wheelContainer">
+            <div class="wheel">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

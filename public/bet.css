@@ -38,10 +38,6 @@ body {
     flex-direction: column;
 }
 
-.text {
-    /* flex-grow: 1; */
-}
-
 .content h1 {
     color: #FFF;
     font-family: Facon;
@@ -85,10 +81,6 @@ body {
 
 .cards img:hover {
     transform: scale(1.1);
-}
-
-.content2 img {
-    /* margin-bottom: 8.5vh; */
 }
 
 .text {
