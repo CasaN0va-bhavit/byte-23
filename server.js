@@ -147,19 +147,11 @@ app.post('/create-checkout-session', checkAuthenticated, async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
         amount: parseInt(req.body.coins + "00"),
         currency: "inr",
-        confirmation_method: 'manual'
+        automatic_payment_methods: {
+            enabled: true
+        }
     })
-    const confirmPayment = await stripe.paymentIntents.confirm(
-        paymentIntent.id,
-        {
-            payment_method: "pm_card_visa",
-            return_url: "https://google.com"
-        },
-    )
-    res.redirect(confirmPayment.next_action.redirect_to_url.url)
-    const intentCaptured = await stripe.paymentIntents.capture(
-        paymentIntent.id
-    )
+    
 });
 
 
