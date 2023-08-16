@@ -79,6 +79,12 @@ body {
 .cards img {
     width: 15.960vw;
     height: 23.485vw;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cards img:hover {
+    transform: scale(1.1);
 }
 
 .content2 img {
