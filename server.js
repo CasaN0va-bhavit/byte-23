@@ -124,6 +124,7 @@ app.post('/roll-the-dice', async (req, res) => {
         const requiredUser = await User.findOne({name: req.user.name})
         if (totalNumber == 12) {
             const amountToSet = requiredUser.amount + (parseInt(req.body.amount) * 3)
+            await User.updateOne({name: requiredUser.name}, {$set: {amount: amountToSet}})
             res.render('roll-the-dice.ejs', {
                 dice1: chosenNumberDiceOne,
                 dice2: chosenNumberDiceTwo,
@@ -132,6 +133,7 @@ app.post('/roll-the-dice', async (req, res) => {
         }
         if (totalNumber >= 7) {
             const amountToSet = requiredUser.amount + (parseInt(req.body.amount) * 1.5)
+            await User.updateOne({name: requiredUser.name}, {$set: {amount: amountToSet}})
             res.render('roll-the-dice.ejs', {
                 dice1: chosenNumberDiceOne, 
                 dice2: chosenNumberDiceTwo,
@@ -139,6 +141,7 @@ app.post('/roll-the-dice', async (req, res) => {
             })
         } else {
             const amountToSet = requiredUser.amount - parseInt(req.body.amount)
+            await User.updateOne({name: requiredUser.name}, {$set: {amount: amountToSet}})
             res.render('roll-the-dice.ejs', {
                 dice1: chosenNumberDiceOne, 
                 dice2: chosenNumberDiceTwo,
@@ -150,7 +153,7 @@ app.post('/roll-the-dice', async (req, res) => {
         res.send("Error")
     }
 })
-const DOMAIN = 'http://localhost:3000';
+const DOMAIN = 'https://bloodbet.onrender.com';
 
 
 app.post('/create-checkout-session', async (req, res) => {

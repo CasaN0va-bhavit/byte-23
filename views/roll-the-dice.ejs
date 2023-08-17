@@ -20,7 +20,7 @@
         <h1 class="title">Place your bet:</h1>
         <div class="roll">
             <form action="/roll-the-dice" method="post">
-                <input class="inputs" type="number" name="amount" placeholder="Place your bet:" required>
+                <input class="inputs" type="number" min="0" max=<%- amount %> name="amount" placeholder="Place your bet:" required>
                 <input class="submit-button" type="submit" value="Roll The Dice!">
             </form>
             <div class="content">
