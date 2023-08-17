@@ -199,7 +199,7 @@ app.get('/success', checkAuthenticated, async (req, res) => {
         }
     } catch(err) {
         console.log(err)
-        res.send("Error")
+        res.send("Error");
     }
 });
 
@@ -216,9 +216,9 @@ app.get('/pot', checkAuthenticated, async (req, res) => {
                 //     total += all_users[i].bet || 0
                 // }
                 // console.log(total, "bahbdhabda")
-                return res.render('pot.ejs', {name: req.user.name, betZuck: requiredUser.bet, betMusk: 0, amount: requiredUser.amount, bet: requiredUser.bet})
+                return res.render('pot.ejs', {name: req.user.name, betZuck: requiredUser.bet, betMusk: null, amount: requiredUser.amount, bet: requiredUser.bet})
             } else if (requiredUser.betFor === 'zuck') {
-                return res.render('pot.ejs', {name: req.user.name, betMusk: requiredUser.bet, betZuck: 0, amount: requiredUser.amount, bet: requiredUser.bet})
+                return res.render('pot.ejs', {name: req.user.name, betMusk: requiredUser.bet, betZuck: null, amount: requiredUser.amount, bet: requiredUser.bet})
             } else {
                 return res.render('pot.ejs', {name: req.user.name, bet: null, betFor: null, amount: requiredUser.amount})
             }
@@ -314,7 +314,7 @@ app.post('/zuck', checkAuthenticated, async(req, res) => {
                         bet: req.body.coins
                     }
                 })
-            return res.send("L")
+            return res.redirect('/pot')
             
         }
     } catch (error) {

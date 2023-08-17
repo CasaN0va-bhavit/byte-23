@@ -22,7 +22,7 @@
                     <div class="card" style="margin-left: 1vw;">
                         <div class="rectangle-red">
                             <h2 class="secondary-title">Pot 2 (Mark Zuck.):</h2>
-                            <h1 class="title"><%- bet %></h1>
+                            <h1 class="title"><% if (!betMusk && betZuck) {%> <%-betZuck%> <%} else if (!betZuck && betMusk) {%><%-betMusk%><%}%></h1>
                         </div>
                     </div>
                 </div>
