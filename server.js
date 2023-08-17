@@ -447,7 +447,7 @@ function checkNotAuthenticated(req, res, next) {
 function loginUser(req, res, next) {
     passport.authenticate('local', (err, user, info) => {
         if (err) throw err;
-        if (!user) res.send([{ msg: info.message }]);
+        if (!user) res.send(`There was an error in your login: ${info.message}. <a href="/login">Click here</a> to redirect to the login page`);
         else {
             req.logIn(user, (err) => {
                 if (err) throw err;
