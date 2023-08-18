@@ -99,9 +99,9 @@ app.get('/roll-the-dice', checkAuthenticated, async (req, res) => {
     try {
         const requiredUser = await User.findOne({name: req.user.name})
         if (!requiredUser) {
-            return res.render('roll-the-dice.ejs', {name: req.user.name, amount: 0, dice1: 0, dice2: 0, total: 0, totalTimes: "You got 0x"})
+            return res.render('roll-the-dice.ejs', {name: req.user.name, amount: 0, dice1: 0, dice2: 0})
         } else {
-            return res.render('roll-the-dice.ejs', {name: req.user.name, amount: requiredUser.amount, dice1: 0, dice2: 0, total: 0, totalTimes: "You got 0x"})
+            return res.render('roll-the-dice.ejs', {name: req.user.name, amount: requiredUser.amount, dice1: 0, dice2: 0})
         }
     } catch(err) {
         console.log(err)
@@ -110,29 +110,25 @@ app.get('/roll-the-dice', checkAuthenticated, async (req, res) => {
     res.render('roll-the-dice.ejs', {
         amount: 0,
         dice1: 0,
-        dice2: 0,
-        total: 0,
-        totalTimes: "You got 0x"
+        dice2: 0
     })
 })
 
-app.post('/roll-the-dice', checkAuthenticated, async (req, res) => {
+app.post('/roll-the-dice', async (req, res) => {
     const possibilities = [1,1,1,2,2,3,3,4,5,6]
     const chosenNumberDiceOne = possibilities[Math.floor(Math.random() * 10)]
     const chosenNumberDiceTwo = possibilities[Math.floor(Math.random() * 10)]
     const totalNumber = chosenNumberDiceOne + chosenNumberDiceTwo
     console.log(totalNumber)
     try {
-        const requiredUser = await User.findOne({email: req.cookies["username"]})
+        const requiredUser = await User.findOne({name: req.user.name})
         if (totalNumber == 12) {
             const amountToSet = requiredUser.amount + (parseInt(req.body.amount) * 3)
             await User.updateOne({name: requiredUser.name}, {$set: {amount: amountToSet}})
             res.render('roll-the-dice.ejs', {
                 dice1: chosenNumberDiceOne,
                 dice2: chosenNumberDiceTwo,
-                amount: amountToSet,
-                total: totalNumber,
-                totalTimes: "You got 3x"
+                amount: amountToSet
             })
         }
         if (totalNumber >= 7) {
@@ -141,9 +137,7 @@ app.post('/roll-the-dice', checkAuthenticated, async (req, res) => {
             res.render('roll-the-dice.ejs', {
                 dice1: chosenNumberDiceOne, 
                 dice2: chosenNumberDiceTwo,
-                amount: amountToSet,
-                total: totalNumber,
-                totalTimes: "You got 1.5x"
+                amount: amountToSet
             })
         } else {
             const amountToSet = requiredUser.amount - parseInt(req.body.amount)
@@ -151,9 +145,7 @@ app.post('/roll-the-dice', checkAuthenticated, async (req, res) => {
             res.render('roll-the-dice.ejs', {
                 dice1: chosenNumberDiceOne, 
                 dice2: chosenNumberDiceTwo,
-                amount: amountToSet,
-                total: totalNumber,
-                totalTimes: "You got -1x"
+                amount: amountToSet
             })
         }
     } catch(err) {
@@ -216,20 +208,22 @@ app.get('/success', checkAuthenticated, async (req, res) => {
 
 app.get('/pot', checkAuthenticated, async (req, res) => {
     try {
-        const requiredUser = await User.findOne({email: req.cookies["username"]})
+        const requiredUser = await User.findOne({name: req.user.name})
         if (!requiredUser) {
-            return res.render('pot.ejs', {name: req.user.name, amount: 0});
+            return res.render('pot.ejs', {name: req.user.name, amount: 0})
         } else {
-            if (requiredUser.betFor === 'musk') {
-                const elon = await User.findOne({email: "elon@gmail.com"})
-                const mark = await User.findOne({email: "mark@gmail.com"})
-                return res.render('pot.ejs', {name: req.user.name, betZuck: mark.bet, betMusk: elon.bet, amount: requiredUser.amount})
+            if (requiredUser.betFor === 'elon') {
+                // const all_users = await User.find({})
+                // let total = 0
+                // for (i = 0; i <= all_users.length; i++) {
+                //     total += all_users[i].bet || 0
+                // }
+                // console.log(total, "bahbdhabda")
+                return res.render('pot.ejs', {name: req.user.name, betZuck: requiredUser.bet, betMusk: null, amount: requiredUser.amount, bet: requiredUser.bet})
             } else if (requiredUser.betFor === 'zuck') {
-                const elon = await User.findOne({email: "elon@gmail.com"})
-                const mark = await User.findOne({email: "mark@gmail.com"})
-                return res.render('pot.ejs', {name: req.user.name, betMusk: elon.bet, betZuck: mark.bet, amount: requiredUser.amount})
+                return res.render('pot.ejs', {name: req.user.name, betMusk: requiredUser.bet, betZuck: null, amount: requiredUser.amount, bet: requiredUser.bet})
             } else {
-                return res.render('pot.ejs', {name: req.user.name, bet: null, betMusk: 0, betZuck:0, betFor: null, amount: requiredUser.amount})
+                return res.render('pot.ejs', {name: req.user.name, bet: null, betFor: null, amount: requiredUser.amount})
             }
         }
     } catch(err) {
@@ -240,7 +234,7 @@ app.get('/pot', checkAuthenticated, async (req, res) => {
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs', {amount: null})
-})
+});
 
 app.post('/logout', (req, res) => {
     req.logout((err) => {
@@ -320,21 +314,14 @@ app.post('/zuck', checkAuthenticated, async(req, res) => {
                 {$set: 
                     {
                         betFor: 'zuck', 
-                        bet: req.body.coins,
-                        amount: parseInt(requiredUser.amount) - parseInt(req.body.coins)
+                        bet: req.body.coins
                     }
                 })
-            const alreadyBet = await User.findOne({email : "mark@gmail.com"})
-            console.log(alreadyBet);
-            await User.updateOne({email: "mark@gmail.com"}, {$set: {
-                bet: parseInt(alreadyBet.bet) + parseInt(req.body.coins)
-            }})
-            // console.log(test)
-            return res.redirect("/pot")
+            return res.redirect('/pot')
             
         }
     } catch (error) {
-        res.send(error)
+        res.send('Error')
     }
 })
 
@@ -363,21 +350,14 @@ app.post('/elon', checkAuthenticated, async (req, res) => {
                 {$set: 
                     {
                         betFor: 'musk', 
-                        bet: req.body.coins,
-                        amount: parseInt(requiredUser.amount) - parseInt(req.body.coins)
+                        bet: req.body.coins
                     }
                 })
-            const alreadyBet = await User.findOne({email : "elon@gmail.com"})
-            console.log(alreadyBet);
-            await User.updateOne({email: "elon@gmail.com"}, {$set: {
-                bet: parseInt(alreadyBet.bet) + parseInt(req.body.coins)
-            }})
-            // console.log(test)
-            return res.redirect("/pot")
+            return res.send("L")
             
         }
     } catch (error) {
-        res.send(error)
+        res.send('Error')
     }
 })
 
@@ -397,6 +377,29 @@ app.get('/elon', checkAuthenticated, async(req,res) => {
 })
 
 
+app.post('/elonbet', async (req, res) => {
+    try {
+        const requiredUser = await User.findOne({name: req.user.name})
+        if (!requiredUser) {
+            return res.render('choseElon.ejs', {name: req.user.name, amount: requiredUser.amount})
+        } else {
+            const newAmount = requiredUser.amount - parseInt(req.body.coins)
+            await User.updateOne({
+                email: req.cookies["username"]}, 
+                {$set: 
+                    {
+                        betFor: 'elon', 
+                        bet: parseInt(req.body.coins),
+                        amount: newAmount
+                    }
+                })
+            return res.redirect("/pot")
+            
+        }
+    } catch (error) {
+        res.send('Error')
+    }
+})
 
 app.get('/arena', checkAuthenticated, async (req, res) => {
     try {
@@ -420,23 +423,6 @@ app.get('/spin-the-wheel', checkAuthenticated, async (req, res) => {
             return res.render('spinTheWheel.ejs', {name: req.user.name, amount: 0})
         } else {
             return res.render('spinTheWheel.ejs', {name: req.user.name, amount: requiredUser.amount})
-        }
-    } catch(err) {
-        console.log(err)
-        res.send("Error")
-    }
-})
-
-app.post('/spin-the-wheel', checkAuthenticated, async (req, res) => {
-    try {
-        const requiredUser = await User.findOne({email: req.cookies["username"]})
-        if (!requiredUser) {
-            return res.render('spinTheWheel.ejs', {name: req.user.name, amount: 0})
-        } else {
-            await User.updateOne({email: req.cookies["username"]}, {$set: {
-                amount: parseInt(requiredUser.amount) + parseInt(req.body.finalEarnings)
-            }})
-            console.log("Ho gya")
         }
     } catch(err) {
         console.log(err)

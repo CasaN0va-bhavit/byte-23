@@ -69,31 +69,28 @@
         </div>
     </div>
     <script>
+        var wheelSpun = false;
         const wheelImg = document.getElementById('wheel');
         wheelImg.addEventListener('click', (e) => {
+            if (wheelSpun === false) {
                 const randomRotation = Math.floor(Math.random() * 359);
                 const finalRotation = 720 + randomRotation;
-                var finalEarnings = null;
                 wheelImg.style.transform = 'rotate(' + finalRotation + 'deg)';
                 wheelImg.style.transformOrigin = (wheelImg.width/2) + " " + (wheelImg.height/2);
                 if (randomRotation <= 90) {
-                    finalEarnings = -50;
+                    console.log("-50")
                 } else if (randomRotation <= 180) {
-                    finalEarnings = 60;
+                    console.log('60!')
                 } else if (randomRotation <= 270) {
-                    finalEarnings = -20;
+                    console.log('-20!')
                 } else {
-                    finalEarnings = 0;
+                    console.log('0!')
                 }
-            setTimeout(function() {
-                const xhttp = new XMLHttpRequest();
-                xhttp.onload = function() {
-                    console.log("Bye")
-                }
-                xhttp.open("POST", "/spin-the-wheel");
-                xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
-                xhttp.send(`finalEarnings=${finalEarnings}`)
-            })
+                setTimeout(() => {
+                    wheelSpun = true;
+                }, 3000);
+            }
+            
         })
     </script>
 </body>
